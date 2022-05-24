@@ -85,9 +85,9 @@ const App = (props) => {
               }
             />
           )} */}
-          <Route path="/user" render={() =>  isAuthenticated(JSON.parse(localStorage.getItem(" "))) ?  <UserLayout />: <Redirect to="/user/login" />} />
+          <Route path="/user" render={() => <UserLayout />} />
           <Route path="/admin/login" render={() => <AdminLogin />} />
-          <Route path="/admin" render={() => isAuthenticated(JSON.parse(localStorage.getItem("authenticated"))) ? <AdminLayout />:<Redirect to="/user/login" />} />
+          <Route path="/admin" render={() => <AdminLayout />} />
 
           {/* <Route path="/register" exact component={Register} /> */}
           <Route path="/error" exact component={ErrorPage} />
