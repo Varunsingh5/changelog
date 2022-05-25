@@ -7,9 +7,12 @@ import { Switch, Route, Redirect } from "react-router";
 import { connect } from "react-redux";
 
 // -- Custom Components
-import LayoutComponent from "./components/Layout/Layout";
+// import LayoutComponent from "./components/Layout/Layout";
 import ErrorPage from "./pages/error/ErrorPage";
 import Login from "./pages/login/UserLogin";
+import AdminLogin from "./pages/login/AdminLogin";
+import AdminLayout from "./pages/admin/Layout/AdminLayout"
+import UserLayout from "./pages/user/Layout/UserLayout";
 // import Register from "./pages/register/Register";
 // -- Redux Actions
 // import { logoutUser } from "./actions/auth";
@@ -22,10 +25,11 @@ import isAuthenticated from "./services/authService";
 
 // -- Component Styles
 import "./styles/app.scss";
-import AdminLogin from "./pages/login/AdminLogin";
-import AdminLayout from "./pages/admin/Layout/AdminLayout"
-import UserLayout from "./pages/user/Layout/UserLayout";
+
+
 import { UserAuthContextProvider } from "../src/components/context/UserAuthContext";
+import UserDashboard from "./pages/user/dashboard/UserDashboard";
+import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
 
 const PrivateRoute = ({ dispatch, component, ...rest }) => {
   return <Route
@@ -42,9 +46,8 @@ const App = (props) => {
 
   // useEffect(() => {
   //   setRole(localStorage.getItem("role"));
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [localStorage.getItem("role")]);
-
 
   return (
     <div>
@@ -69,19 +72,19 @@ const App = (props) => {
               isAuthenticated(JSON.parse(localStorage.getItem("authenticated"))) ? <Redirect to="/user" /> : <Login />
             }
           />
-{/* 
-          {role === "user" ? (
+
+          {/* {role === "user" ? (
             <Route
               path="/user/dashboard"
               element={
-                <UserLogin />
+                <UserDashboard />
               }
             />
           ) : (
             <Route
               path="/admin/dashboard"
               element={
-                <AdminLogin />
+                <AdminDashboard />
               }
             />
           )} */}
@@ -90,8 +93,8 @@ const App = (props) => {
           <Route path="/admin" render={() => <AdminLayout />} />
 
           {/* <Route path="/register" exact component={Register} /> */}
-          <Route path="/error" exact component={ErrorPage} />
-          <Route path='*' exact={true} component={() => <Redirect to="/error" />} />
+          {/* <Route path="/error" exact component={ErrorPage} /> */}
+          {/* <Route path='*' exact={true} component={() => <Redirect to="/error" />} /> */}
         </Switch>
       </UserAuthContextProvider>
     </div>

@@ -13,6 +13,13 @@ import Footer from "../../../components/Footer/Footer";
 import Breadcrumbs from "../../../components/Breadbrumbs/Breadcrumbs";
 
 
+import Text from "../../typography/Profile";
+import Tables from "../../tables/Tables";
+import Notifications from "../../notifications/Notifications"
+import Charts from "../../uielements/charts/Charts";
+import Icons from "../../uielements/icons/IconsPage";
+import Maps from "../../uielements/maps/google/GoogleMapPage"
+
 
 // -- Component Styles
 import s from "./userLayout.module.scss";
@@ -30,13 +37,13 @@ const UserLayout = (props) => {
           <Switch>
             <Route path="/user" exact render={() => <Redirect to="/user/dashboard" />} />
             <Route path="/user/dashboard" exact component={UserDashboard} />
-            {/* <Route path="/template/typography" exact component={Typography} />
-            <Route path="/template/tables" exact component={Tables} />
-            <Route path="/template/notifications" exact component={Notifications} />
-            <Route path="/template/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} />
-            <Route path="/template/ui-elements/charts" exact component={Charts} />
-            <Route path="/template/ui-elements/icons" exact component={Icons} />
-            <Route path="/template/ui-elements/maps" exact component={Maps} /> */}
+            <Route path="/user/profile" exact component={Text} />
+            <Route path="/user/tables" exact component={Tables} />
+            <Route path="/user/notifications" exact component={Notifications} />
+            <Route path="/user/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} />
+            <Route path="/user/ui-elements/charts" exact component={Charts} />
+            <Route path="/user/ui-elements/icons" exact component={Icons} />
+            <Route path="/user/ui-elements/maps" exact component={Maps} />
             <Route path='*' exact render={() => <Redirect to="/user" />} />
           </Switch>
         </main>

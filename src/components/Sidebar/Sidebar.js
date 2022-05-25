@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button} from 'reactstrap';
+import { Button } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import s from "./Sidebar.module.scss";
 import LinksGroup from "./LinksGroup/LinksGroup.js";
@@ -29,10 +29,10 @@ const Sidebar = (props) => {
   }, [props.sidebarOpened])
 
   return (
-    <nav className={cn(s.root, {[s.sidebarOpen]: burgerSidebarOpen})} >
+    <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })} >
       <header className={s.logo}>
-        <SofiaLogo/>
-        <span className={s.title}>SOFIA</span>
+        <SofiaLogo />
+        <span className={s.title}>SQUAMINDS</span>
       </header>
       <ul className={s.nav}>
         <LinksGroup
@@ -40,19 +40,19 @@ const Sidebar = (props) => {
           activeItem={props.activeItem}
           header="Dashboard"
           isHeader
-          iconName={<i className={'eva eva-home-outline'}/>}
-          link="/template/dashboard"
+          iconName={<i className={'eva eva-home-outline'} />}
+          link="/user/dashboard"
           index="dashboard"
           badge="9"
         />
         <h5 className={s.navTitle}>TEMPLATE</h5>
-        {/* <LinksGroup
+        <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
           header="Typography"
           isHeader
-          iconName={<i className={'eva eva-text-outline'}/>}
-          link="/template/typography"
+          iconName={<i className={'eva eva-text-outline'} />}
+          link="/user/text"
           index="typography"
         />
         <LinksGroup
@@ -60,8 +60,8 @@ const Sidebar = (props) => {
           activeItem={props.activeItem}
           header="Tables"
           isHeader
-          iconName={<i className={'eva eva-grid-outline'}/>}
-          link="/template/tables"
+          iconName={<i className={'eva eva-grid-outline'} />}
+          link="/user/tables"
           index="tables"
         />
         <LinksGroup
@@ -69,8 +69,8 @@ const Sidebar = (props) => {
           activeItem={props.activeItem}
           header="Notifications"
           isHeader
-          iconName={<i className={'eva eva-bell-outline'}/>}
-          link="/template/notifications"
+          iconName={<i className={'eva eva-bell-outline'} />}
+          link="/user/notifications"
           index="notifications"
         />
         <LinksGroup
@@ -78,25 +78,45 @@ const Sidebar = (props) => {
           activeItem={props.activeItem}
           header="UI Elements"
           isHeader
-          iconName={<i className={'eva eva-cube-outline'}/>}
+          iconName={<i className={'eva eva-cube-outline'} />}
+          link="/user/uielements"
+          index="uielements"
+          childrenLinks={[
+            {
+              header: 'Charts', link: '/user/ui-elements/charts',
+            },
+            {
+              header: 'Icons', link: '/user/ui-elements/icons',
+            },
+            {
+              header: 'Google Maps', link: '/user/ui-elements/maps',
+            },
+          ]}
+        />
+        {/* <LinksGroup
+          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+          activeItem={props.activeItem}
+          header="UI Elements"
+          isHeader
+          iconName={<i className={'eva eva-cube-outline'} />}
           link="/template/uielements"
           index="uielements"
           childrenLinks={[
             {
-              header: 'Charts', link: '/template/ui-elements/charts',
+              header: 'Charts', link: '/user/ui-elements/charts',
             },
             {
-              header: 'Icons', link: '/template/ui-elements/icons',
+              header: 'Icons', link: '/user/ui-elements/icons',
             },
             {
-              header: 'Google Maps', link: '/template/ui-elements/maps',
+              header: 'Google Maps', link: '/user/ui-elements/maps',
             },
           ]}
         /> */}
       </ul>
-      <div className="bg-widget d-flex mt-auto ml-1">
+      {/* <div className="bg-widget d-flex mt-auto ml-1">
         <Button className="rounded-pill my-3 body-2 d-none d-md-block" type="submit" color="secondary-red">Unlock Full Version</Button>
-      </div>
+      </div> */}
     </nav>
   );
 }

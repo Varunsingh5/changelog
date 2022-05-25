@@ -39,6 +39,7 @@ import userImg from "../../assets/user.svg";
 
 import s from "./Header.module.scss";
 import "animate.css";
+import {useUserAuth} from "../context/UserAuthContext";
 
 const Header = (props) => {
   const history = useHistory();
@@ -63,9 +64,20 @@ const Header = (props) => {
     }
   }
 
-  const doLogout = () => {
-    props.dispatch(logoutUser({history}));
-  }
+  // const doLogout = () => {
+  //   props.dispatch(logoutUser({history}));
+  // }
+
+  const { logOut, user } = useUserAuth();
+  // const history = useHistory();
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      history.push("/user/login");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <Navbar className={`${s.root} d-print-none`}>
@@ -137,8 +149,9 @@ const Header = (props) => {
             <DropdownItem className={s.dropdownProfileItem}><TasksIcon/><span>Tasks</span></DropdownItem>
             <DropdownItem className={s.dropdownProfileItem}><MessagesIcon/><span>Messages</span></DropdownItem>
             <NavItem>
-              <NavLink onClick={() => doLogout()} href="#">
-                <button className="btn btn-primary rounded-pill mx-auto logout-btn" type="submit"><img src={logoutIcon} alt="Logout"/><span className="ml-1">Logout</span></button>
+            {/* onClick={() => doLogout()} */}
+              <NavLink  href="#">
+                <button className="btn btn-primary rounded-pill mx-auto logout-btn" type="submit" onClick={handleLogout}><img src={logoutIcon} alt="Logout"/><span className="ml-1">Logout</span></button>
               </NavLink>
             </NavItem>
           </DropdownMenu>
