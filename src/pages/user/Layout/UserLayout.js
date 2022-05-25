@@ -13,11 +13,11 @@ import Footer from "../../../components/Footer/Footer";
 import Breadcrumbs from "../../../components/Breadbrumbs/Breadcrumbs";
 
 
-import Text from "../../typography/Profile";
+// import Text from "../../typography/Profile";
 // import Tables from "../../tables/Tables";
-import Notifications from "../../notifications/Notifications"
+// import Notifications from "../../notifications/Notifications"
 // import Charts from "../../uielements/charts/Charts";
-import Icons from "../../uielements/icons/IconsPage";
+// import Icons from "../../uielements/icons/IconsPage";
 import Maps from "../../uielements/maps/google/GoogleMapPage"
 
 
@@ -30,7 +30,7 @@ import Projects from "../../Projects/Projects";
 import Calendar1 from "../../Calendar/Calendar1";
 //  import Maps from "../../uielements/maps/google/GoogleMapPage";
  import Charts from "../../uielements/charts/Charts";
-
+import Contacts from "../../AdminSidebar/Contacts";
 
 const UserLayout = (props) => {
   console.log("in layout");
@@ -51,6 +51,11 @@ const UserLayout = (props) => {
             <Route path="/user/calendar" exact component={Calendar1} />
             <Route path="/user/charts" exact component={Charts} />
             <Route path="/user/maps" exact component={Maps} />
+            <Route path="/user/contacts" exact component={Contacts} />
+
+
+
+
 
 
             {/* <Route path="/user/notifications" exact component={Notifications} /> */}

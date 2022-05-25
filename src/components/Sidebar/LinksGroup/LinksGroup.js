@@ -34,7 +34,7 @@ const LinksGroup = (props) => {
   // const { exact } = this.props.exact;
   if (!props.childrenLinks) {
     if (props.isHeader) {
-      console.log('>>>>>',props);
+      // console.log('>>>>>',props);
       return (
         <li className={[s.headerLink, props.className].join(" ")}>
           <NavLink
