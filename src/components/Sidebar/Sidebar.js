@@ -29,7 +29,7 @@ const Sidebar = (props) => {
   }, [props.sidebarOpened])
 
   return (
-    <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })} >
+    <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })}  >
       <header className={s.logo}>
         <SofiaLogo />
         <span className={s.title}>SQUAMINDS</span>
@@ -101,6 +101,15 @@ const Sidebar = (props) => {
           iconName={<i className={'eva eva-map-outline'} />}
           link="/user/maps"
           index="Googlemappage"
+        />
+        <LinksGroup
+          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+          activeItem={props.activeItem}
+          header="USerTable"
+          isHeader
+          iconName={<i className={'eva eva-grid-outline'} />}
+          link="/user/contacts"
+          index="UserTable"
         />
 
         {/* <LinksGroup

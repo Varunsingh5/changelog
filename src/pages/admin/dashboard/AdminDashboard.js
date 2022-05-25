@@ -4,7 +4,7 @@ import {
   Col,
   Row,
   Progress,
-  Button,
+  // Button,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
@@ -24,7 +24,7 @@ import heartYellow from "../../../assets/dashboard/heartYellow.svg";
 import gymIcon from "../../../assets/dashboard/gymIcon.svg";
 import therapyIcon from "../../../assets/dashboard/therapyIcon.svg";
 import user from "../../../assets/user.svg";
-import statsPie from "../../../assets/dashboard/statsPie.svg";
+// import statsPie from "../../../assets/dashboard/statsPie.svg";
 
 import s from "./adminDashboard.module.scss";
 
