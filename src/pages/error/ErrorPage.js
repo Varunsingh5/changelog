@@ -29,8 +29,8 @@ const ErrorPage = () => {
         <img className={s.errorImage} src={errorImage} alt="Error page" width="80" />
       </div>
       <div className={s.footer}>
-        <span className={s.footerLabel}>Copyright &copy; 2021 squadminds</span>
-        <FooterIcon />
+        {/* <span className={s.footerLabel}>Copyright &copy; 2021 squadminds</span>
+        <FooterIcon /> */}
       </div>
     </div>
   );

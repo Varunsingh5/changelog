@@ -32,7 +32,7 @@ const Sidebar = (props) => {
     <nav className={cn(s.root, {[s.sidebarOpen]: burgerSidebarOpen})} >
       <header className={s.logo}>
         <SofiaLogo/>
-        <span className={s.title}>SOFIA</span>
+        <span className={s.title}>SQUADMINDS</span>
       </header>
       <ul className={s.nav}>
         <LinksGroup
@@ -41,39 +41,66 @@ const Sidebar = (props) => {
           header="Dashboard"
           isHeader
           iconName={<i className={'eva eva-home-outline'}/>}
-          link="/template/dashboard"
+          link="/user/dashboard"
           index="dashboard"
           badge="9"
         />
-        <h5 className={s.navTitle}>TEMPLATE</h5>
-        {/* <LinksGroup
+        {/* <h5 className={s.navTitle}>TEMPLATE</h5> */}
+       <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
-          header="Typography"
+          header="Profile"
           isHeader
-          iconName={<i className={'eva eva-text-outline'}/>}
-          link="/template/typography"
-          index="typography"
+          iconName={<i className={'eva eva-person-outline'}/>}
+          link="/user/profile"
+          index="profile"
+        />
+         <LinksGroup
+          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+          activeItem={props.activeItem}
+          header="Projects"
+          isHeader
+          iconName={<i className={'eva eva-folder-outline'}/>}
+          link="/user/projects"
+          index="projects"
         />
         <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
-          header="Tables"
+          header="Leave Table"
           isHeader
           iconName={<i className={'eva eva-grid-outline'}/>}
-          link="/template/tables"
+          link="/user/tables"
           index="tables"
         />
         <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
-          header="Notifications"
+          header="Calendar"
           isHeader
-          iconName={<i className={'eva eva-bell-outline'}/>}
-          link="/template/notifications"
-          index="notifications"
-        />
-        <LinksGroup
+          iconName={<i className={'eva eva-calendar-outline'}/>}
+          link="/user/calendar"
+          index="calendar1"
+          />
+          <LinksGroup 
+           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+           activeItem={props.activeItem}
+           header="Map"
+           isHeader
+           iconName={<i className={'eva eva-map-outline'}/>}
+           link="/user/map"
+           index="googlemappage"
+          />
+           <LinksGroup 
+           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+           activeItem={props.activeItem}
+           header="Charts"
+           isHeader
+           iconName={<i className={'eva eva-bar-chart-outline'}/>}
+           link="/user/charts"
+           index="charts"
+          />
+          {/* <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
           header="UI Elements"
@@ -92,11 +119,12 @@ const Sidebar = (props) => {
               header: 'Google Maps', link: '/template/ui-elements/maps',
             },
           ]}
-        /> */}
+        /> */} 
+        
       </ul>
-      <div className="bg-widget d-flex mt-auto ml-1">
+      {/* <div className="bg-widget d-flex mt-auto ml-1">
         <Button className="rounded-pill my-3 body-2 d-none d-md-block" type="submit" color="secondary-red">Unlock Full Version</Button>
-      </div>
+      </div> */}
     </nav>
   );
 }
