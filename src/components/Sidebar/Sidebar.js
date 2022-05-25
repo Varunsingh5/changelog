@@ -27,7 +27,7 @@ const Sidebar = (props) => {
       }, 0);
     }
   }, [props.sidebarOpened])
-
+if(localStorage.getItem("role")=="admin"){
   return (
     <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })}  >
       <header className={s.logo}>
@@ -139,6 +139,18 @@ const Sidebar = (props) => {
       </div> */}
     </nav>
   );
+    }
+    else{
+      return (
+        <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })}  >
+      <header className={s.logo}>
+        <SofiaLogo />
+        <span className={s.title}>SQUAMINDS</span>
+      </header>
+      
+    </nav>
+      )
+    }
 }
 
 Sidebar.propTypes = {

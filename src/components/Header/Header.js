@@ -72,8 +72,11 @@ const Header = (props) => {
   // const history = useHistory();
   const handleLogout = async () => {
     try {
+      const currentRole = localStorage.getItem("role");
+      localStorage.clear();
       await logOut();
-      history.push("/user/login");
+      
+      history.push(`/${currentRole}/login`);
     } catch (error) {
       console.log(error.message);
     }

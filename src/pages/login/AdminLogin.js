@@ -57,12 +57,9 @@ const AdminLogin = () => {
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
           localStorage.setItem('role', docSnap.data().role);
-          if (docSnap.data().role === "admin") {
-            history.push("/admin")
-          }
-          else {
-            history.push("/admin/login")
-          }
+
+          history.push("/admin")
+          
         } else {
 
           console.log("No such document!");
