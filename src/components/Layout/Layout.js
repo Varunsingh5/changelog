@@ -1,19 +1,20 @@
-// // -- React and related libs
-// import React from "react";
+// // // -- React and related libs
+// // import React from "react";
 // import { connect } from "react-redux";
 // import { Switch, Route, withRouter, Redirect } from "react-router";
+// import Profile from "../../pages/profile/Profile";
+// import Tables from "../../pages/Tables/Tables";
 
-// // -- Third Party Libs
+// // // -- Third Party Libs
 // import PropTypes from "prop-types";
 
-// // -- Custom Components
+// // // -- Custom Components
 // import Header from "../Header/Header";
 // import Sidebar from "../Sidebar/Sidebar";
 // import Footer from "../Footer/Footer";
 // import Breadcrumbs from "../Breadbrumbs/Breadcrumbs";
-// import Dashboard from "../../pages/user/dashboard/UserLayout";
-// import Typography from "../../pages/typography/Typography";
-// import Tables from "../../pages/tables/Tables";
+// // import Dashboard from "../../pages/user/dashboard/Layout/UserLayout";
+// // import Typography from "../../pages/typography/Typography";
 // import Notifications from "../../pages/notifications/Notifications";
 // import Charts from "../../pages/uielements/charts/Charts";
 // import Icons from "../../pages/uielements/icons/IconsPage";
@@ -34,10 +35,10 @@
 //         <main className={s.content}>
 //           <Breadcrumbs url={window.location.pathname} />
 //           <Switch>
-//             <Route path="/user" exact render={() => <Redirect to="/user/dashboard" />} />
-//             <Route path="/user/dashboard" exact component={Dashboard} />
-//             <Route path="/template/typography" exact component={Typography} />
-//             <Route path="/template/tables" exact component={Tables} />
+//             {/* <Route path="/user" exact render={() => <Redirect to="/user/dashboard" />} />
+//             <Route path="/user/dashboard" exact component={Dashboard} /> */}
+//             <Route path="/template/profile" exact component={Profile} />
+//             <Route path="/user/tables" exact component={Tables} />
 //             <Route path="/template/notifications" exact component={Notifications} />
 //             <Route path="/template/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} />
 //             <Route path="/template/ui-elements/charts" exact component={Charts} />

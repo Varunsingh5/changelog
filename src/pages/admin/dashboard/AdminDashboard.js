@@ -102,10 +102,10 @@ const AdminDashboard = () => {
                   <div className="d-flex flex-column align-items-center col-12 col-xl-6 p-sm-4">
                     <p className="headline-1">Upgrade your plan</p>
                     <p className="body-3">So how did the classical Latin become so </p>
-                    <div className="d-flex justify-content-between my-4">
+                    {/* <div className="d-flex justify-content-between my-4">
                       <Button className="rounded-pill mr-3" color="primary">Go Premium</Button>
                       <Button className="rounded-pill body-3" outline color="dark">Try for free</Button>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="d-flex justify-content-center col-12 col-xl-6">
                     <img className="p-1 img-fluid" src={upgradeImage} alt="..." />
@@ -283,13 +283,13 @@ const AdminDashboard = () => {
                 </div>
               </div>
             </div>
-            <a className={`btn-secondary-red ${s.statsBtn}`} href="#top" role="button">
+            {/* <a className={`btn-secondary-red ${s.statsBtn}`} href="#top" role="button">
               <img className={s.pieImg} src={statsPie} alt="..." />
               <div>
                 <p className="headline-2">STATISTIC</p>
                 <p className="body-3">Download your activity</p>
               </div>
-            </a>
+            </a> */}
           </Widget>
         </Col>
       </Row>

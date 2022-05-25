@@ -14,13 +14,14 @@ import Breadcrumbs from "../../../components/Breadbrumbs/Breadcrumbs";
 
 // -- Component Styles
 import s from "./adminLayout.module.scss";
-import Text from "../../typography/Profile";
+// import Text from "../../typography/Profile";
 import AdminDashboard from "../dashboard/AdminDashboard";
-import Tables from "../../tables/Tables";
+import Tables from "../../Tables/Tables";
 import Notifications from "../../../components/Notification/Notification";
 import Charts from "../../uielements/charts/Charts";
 import Icons from "../../uielements/icons/IconsPage";
 import Maps from "../../uielements/maps/google/GoogleMapPage";
+import Profile from "../../profile/Profile";
 
 
 const AdminLayout = (props) => {
@@ -35,7 +36,7 @@ const AdminLayout = (props) => {
           <Switch>
             <Route path="/admin" exact render={() => <Redirect to="/admin/dashboard" />} />
             <Route path="/admin/dashboard" exact component={AdminDashboard} />
-            <Route path="/admin/prfile" exact component={Text} /> 
+            <Route path="/admin/prfile" exact component={Profile} /> 
             <Route path="/admin/tables" exact component={Tables} />
             <Route path="/admin/notifications" exact component={Notifications} />
             <Route path="/admin/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import s from "./Sidebar.module.scss";
 import LinksGroup from "./LinksGroup/LinksGroup.js";
@@ -49,16 +49,25 @@ const Sidebar = (props) => {
         <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
-          header="Typography"
+          header="Profile"
           isHeader
           iconName={<i className={'eva eva-text-outline'} />}
-          link="/user/text"
+          link="/user/profile"
           index="typography"
         />
         <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
-          header="Tables"
+          header="Projects"
+          isHeader
+          iconName={<i className={'eva eva-folder-outline'} />}
+          link="/user/project"
+          index="typography"
+        />
+        <LinksGroup
+          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+          activeItem={props.activeItem}
+          header="Leave Table"
           isHeader
           iconName={<i className={'eva eva-grid-outline'} />}
           link="/user/tables"
@@ -67,32 +76,33 @@ const Sidebar = (props) => {
         <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
-          header="Notifications"
+          header="Calendar"
           isHeader
-          iconName={<i className={'eva eva-bell-outline'} />}
-          link="/user/notifications"
-          index="notifications"
+          iconName={<i className={'eva eva-calendar-outline'} />}
+          link="/user/calendar"
+          index="Calendar"
         />
         <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
-          header="UI Elements"
+          header="Charts"
           isHeader
-          iconName={<i className={'eva eva-cube-outline'} />}
-          link="/user/uielements"
-          index="uielements"
-          childrenLinks={[
-            {
-              header: 'Charts', link: '/user/ui-elements/charts',
-            },
-            {
-              header: 'Icons', link: '/user/ui-elements/icons',
-            },
-            {
-              header: 'Google Maps', link: '/user/ui-elements/maps',
-            },
-          ]}
+          iconName={<i className={'eva eva-bar-chart-outline'} />}
+          link="/user/charts"
+          index="Charts"
         />
+
+
+        <LinksGroup
+          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+          activeItem={props.activeItem}
+          header="Maps"
+          isHeader
+          iconName={<i className={'eva eva-map-outline'} />}
+          link="/user/maps"
+          index="Googlemappage"
+        />
+
         {/* <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
@@ -113,6 +123,7 @@ const Sidebar = (props) => {
             },
           ]}
         /> */}
+
       </ul>
       {/* <div className="bg-widget d-flex mt-auto ml-1">
         <Button className="rounded-pill my-3 body-2 d-none d-md-block" type="submit" color="secondary-red">Unlock Full Version</Button>
