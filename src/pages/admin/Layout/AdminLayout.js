@@ -14,8 +14,14 @@ import Breadcrumbs from "../../../components/Breadbrumbs/Breadcrumbs";
 
 // -- Component Styles
 import s from "./adminLayout.module.scss";
+// import Text from "../../typography/Profile";
 import AdminDashboard from "../dashboard/AdminDashboard";
-
+import Tables from "../../Tables/Tables";
+import Notifications from "../../../components/Notification/Notification";
+import Charts from "../../uielements/charts/Charts";
+import Icons from "../../uielements/icons/IconsPage";
+import Maps from "../../uielements/maps/google/GoogleMapPage";
+import Profile from "../../profile/Profile";
 
 
 const AdminLayout = (props) => {
@@ -28,18 +34,21 @@ const AdminLayout = (props) => {
         <main className={s.content}>
           <Breadcrumbs url={window.location.pathname} />
           <Switch>
-            <Route path="/admin" exact render={()=><Redirect to="/admin/dashboard" />} />
+            <Route path="/admin" exact render={() => <Redirect to="/admin/dashboard" />} />
             <Route path="/admin/dashboard" exact component={AdminDashboard} />
-            {/* <Route path="/template/typography" exact component={Typography} />
-            <Route path="/template/tables" exact component={Tables} />
-            <Route path="/template/notifications" exact component={Notifications} />
-            <Route path="/template/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} />
-            <Route path="/template/ui-elements/charts" exact component={Charts} />
-            <Route path="/template/ui-elements/icons" exact component={Icons} />
-          
-            <Route path="/template/ui-elements/maps" exact component={Maps} />  */}
+            <Route path="/admin/prfile" exact component={Profile} /> 
+            <Route path="/admin/tables" exact component={Tables} />
+            <Route path="/admin/notifications" exact component={Notifications} />
+            <Route path="/admin/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} />
+            <Route path="/admin/ui-elements/charts" exact component={Charts} />
+            <Route path="/admin/ui-elements/icons" exact component={Icons} />
 
-          <Route path='*' exact render={() => <Redirect to="/admin" />} />
+
+          
+          
+            <Route path="/admin/ui-elements/maps" exact component={Maps} /> 
+
+            <Route path='*' exact render={() => <Redirect to="/admin" />} />
           </Switch>
         </main>
         <Footer />

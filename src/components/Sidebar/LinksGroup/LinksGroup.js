@@ -32,9 +32,9 @@ const LinksGroup = (props) => {
   const isOpen = props.activeItem && props.activeItem.includes(props.index) && headerLinkClicked;
 
   // const { exact } = this.props.exact;
-
   if (!props.childrenLinks) {
     if (props.isHeader) {
+      console.log('>>>>>',props);
       return (
         <li className={[s.headerLink, props.className].join(" ")}>
           <NavLink
