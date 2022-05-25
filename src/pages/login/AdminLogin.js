@@ -54,9 +54,7 @@ const AdminLogin = () => {
         const docRef = doc(db, "users", e.user.uid);
         const docSnap = await getDoc(docRef);
 
-
         if (docSnap.exists()) {
-
           console.log("Document data:", docSnap.data());
           localStorage.setItem('role', docSnap.data().role);
           if (docSnap.data().role === "admin") {
@@ -70,23 +68,12 @@ const AdminLogin = () => {
           console.log("No such document!");
         }
 
-
-
       }).catch(err => alert(err.message))
     } catch (err) {
       console.error(err);
       alert(err.message);
     }
   };
-
-
-
-
-
-
-
-
-
 
 
   const [email, setEmail] = useState("");
@@ -116,7 +103,6 @@ const AdminLogin = () => {
     return isvalid;
   }
 
-
   const Login = () => {
     if (!email)
       setValidationState({ ...validationState, email: "Please enter valid email" })
@@ -136,6 +122,9 @@ const AdminLogin = () => {
           <Row className="d-flex align-items-center">
             <Col xs={12} lg={6} className="left-column">
               <Widget className="widget-auth widget-p-lg">
+              <div className='img1' >
+          <img style={{  width: "40%", marginLeft: "100px", }} src="https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1145930514433441792" />
+        </div>
                 <div className="d-flex align-items-center justify-content-between py-3">
                   <p className="auth-header mb-0">Login</p>
                   <div className="logo-block">
@@ -173,13 +162,11 @@ const AdminLogin = () => {
                     <span>{validationState?.password}</span>
                     <div>
                       {/* onClick={Login} */}
-                      <Button style={{ marginTop: "15px", marginLeft: "70px" }} onClick={Login} variant="primary" className="login__btn" >
+                      <Button style={{ marginTop: "15px", marginLeft: "70px",backgroundColor:"blue",color:"white" }} onClick={Login} variant="primary" className="login__btn" >
                         Login
                       </Button>
                     </div>
-                    {/* <div style={{ marginLeft: "50px", marginTop: '5px' }}>
-                      <Link to="/reset">Forgot Password</Link>
-                    </div> */}
+                   
                   </div>
                 </div>
 

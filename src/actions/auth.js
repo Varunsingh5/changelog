@@ -35,7 +35,7 @@ export function receiveLogout() {
 export function logoutUser(props) {
   return (dispatch) => {
     dispatch(requestLogout());
-    localStorage.removeItem('authenticated');
+    localStorage.clear('authenticated');
     dispatch(receiveLogout());
     props.history.push("/user/login")
   };

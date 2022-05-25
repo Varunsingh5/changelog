@@ -51,7 +51,6 @@ export default function Notification({ ...props }) {
           {props.withIcon && <img src={icon} alt="..."/>}
         </div>
         <div className={s.messageContainer}>
-          <span dangerouslySetInnerHTML={{__html: notificationMessages[props.type]}}></span>
         </div>
       </Alert>
     </>

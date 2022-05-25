@@ -25,11 +25,15 @@ import SofiaLogo from "../../components/Icons/SofiaLogo.js";
 // import FacebookIcon from "../../components/Icons/AuthIcons/FacebookIcon.js";
 // import GithubIcon from "../../components/Icons/AuthIcons/GithubIcon.js";
 // import LinkedinIcon from "../../components/Icons/AuthIcons/LinkedinIcon.js";
+
+
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { FormControl,Alert } from "react-bootstrap";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { query, collection, where, doc, getDoc, setDoc ,  } from "firebase/firestore";
 import { useUserAuth } from "../../components/context/UserAuthContext";
+import { db } from "../../firebase";
+import moment from "moment";
 
 
 
@@ -67,7 +71,6 @@ const Login = (props) => {
   //   history.push("/admin/login")
   // }
 
-
   const getOtp = async (e) => {
     e.preventDefault();
     console.log(number);
@@ -77,7 +80,6 @@ const Login = (props) => {
     try {
       const response = await setUpRecaptha(number);
       setResult(response);
-      console.log("respponse====>",response);
       setFlag(true);
     } catch (err) {
       setError(err.message);
@@ -85,13 +87,77 @@ const Login = (props) => {
   };
 
 
+  // const getOtp = async (e) => {
+  //   e.preventDefault();
+  //   console.log(number);
+  //   setError("");
+  //   if (number === "" || number === undefined)
+  //     return setError("Please enter a valid phone number!");
+  //   try {
+  //     const response = await setUpRecaptha(number);
+  //     setResult(response);
+  //     console.log("respponse====>",response);
+  //     setFlag(true);
+  //   } catch (err) {
+  //     setError(err.message);
+  //   }
+  // };
+
+
+  // const verifyOtp = async (e) => {
+  //   e.preventDefault();
+  //   setError("");
+  //   if (otp === "" || otp === null) return;
+  //   try {
+  //     await result.confirm(otp);
+  //     history.push("/user");
+  //   } catch (err) {
+  //     setError(err.message);
+  //   }
+  // };
+
   const verifyOtp = async (e) => {
     e.preventDefault();
-    setError("");
+    setError("Please enter a valid otp!");
     if (otp === "" || otp === null) return;
     try {
-      await result.confirm(otp);
-      history.push("/user");
+      console.log("result", result);
+      await result.confirm(otp)
+        .then(async (confirmationResult) => {
+          console.log("jdvfsdnhfjdshi", confirmationResult);
+          localStorage.setItem('isAuth', 'true')
+          localStorage.setItem('user', JSON.stringify(confirmationResult?.user))
+          localStorage.setItem('role', "user");
+          console.log("SSzfasfas", confirmationResult?.user);
+
+          const docRef = doc(db, "users", confirmationResult?.user?.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            localStorage.setItem('role', docSnap.data().role);
+            // if (docSnap.data().role == "user") {
+              history.push("/user");
+            // }
+          }
+          else {
+            await setDoc(docRef, {
+              uid: confirmationResult?.user?.uid,
+              name: "",
+              authProvider: confirmationResult?.providerId,
+              email: "",
+              onlineState: "",
+              role: "user",
+              isVerified: false,
+              created_at: moment.now()
+            })
+              .then((e) => {
+                history.push("/user");
+              })
+              .catch(error => console.log("error on doc craete phone signup", error))
+          }
+        })
+        .catch(async (err) => {
+          console.log("error in confirm otp", err);
+        })
     } catch (err) {
       setError(err.message);
     }
@@ -115,7 +181,13 @@ const Login = (props) => {
       <Container className="col-12">
         <Row className="d-flex align-items-center">
           <Col xs={12} lg={6} className="left-column">
+
+           
             <Widget className="widget-auth widget-p-lg">
+            <div className='img1' >
+          <img style={{  width: "40%", marginLeft: "100px", }} src="https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1145930514433441792" />
+        </div>
+        
               <div className="d-flex align-items-center justify-content-between py-3">
                 <p className="auth-header mb-0">Login</p>
                 <div className="logo-block">
@@ -138,10 +210,10 @@ const Login = (props) => {
               </FormGroup>
               <div className="button-right">
                 <Link to="/">
-                  <Button variant="secondary">Cancel</Button>
+                  <Button variant="secondary"  style={{backgroundColor:"blue",color:"white"}}>Cancel</Button>
                 </Link>
                 &nbsp;
-                <Button type="Submit" variant="primary">
+                <Button type="Submit" variant="primary" style={{backgroundColor:"blue",color:"white"}}>
                   Send Otp
                 </Button>
               </div>
@@ -159,10 +231,10 @@ const Login = (props) => {
               </FormGroup>
               <div className="button-right">
                 <Link to="/">
-                  <Button variant="secondary">Cancel</Button>
+                  <Button variant="secondary"  style={{backgroundColor:"blue",color:"white"}}>Cancel</Button>
                 </Link>
                 &nbsp;
-                <Button type="submit" variant="primary">
+                <Button type="submit" variant="primary"  style={{backgroundColor:"blue",color:"white"}}>
                   Verify
                 </Button>
               </div>
