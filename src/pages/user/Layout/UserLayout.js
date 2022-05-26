@@ -26,10 +26,10 @@ import s from "./userLayout.module.scss";
 import UserDashboard from "../dashboard/UserDashboard";
 import Profile from "../../profile/Profile";
 import Projects from "../../Projects/Projects";
-import Tables from "../../Tables/Tables";
+ import Tables from "../../Tables/Tables";
 import Calendar1 from "../../Calendar/Calendar1";
 //  import Maps from "../../uielements/maps/google/GoogleMapPage";
-import Charts from "../../uielements/charts/Charts";
+ import Charts from "../../uielements/charts/Charts";
 import Contacts from "../../AdminSidebar/Contacts";
 
 const UserLayout = (props) => {
@@ -50,6 +50,9 @@ const UserLayout = (props) => {
             <Route path="/user/calendar" exact component={Calendar1} />
             <Route path="/user/charts" exact component={Charts} />
             <Route path="/user/maps" exact component={Maps} />
+            <Route path="/user/contacts" exact component={Contacts} />
+
+
 
 
 

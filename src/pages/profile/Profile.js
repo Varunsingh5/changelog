@@ -1,331 +1,231 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
-// import {
-//   Col,
-//   Row,
-// } from "reactstrap";
-// import Widget from "../../components/Widget/Widget";
-import "./Profile.css";
+import React from 'react';
 
 const Profile = () => {
-
-
-
-
-  if (localStorage.getItem("role") === "admin") {
-    return (
-      <div class="container emp-profile">
-        <form method="post">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="profile-img">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
-                <div class="file btn btn-lg btn-primary">
-                  Change Photo
-                  <input type="file" name="file" />
+  return (
+    <div>
+    <section class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">About Me</h3>
+                    <h6 class="theme-color lead">A Lead UX &amp; UI designer based in Canada</h6>
+                    <p>I <mark>design and develop</mark> services for customers of all sizes, specializing in creating stylish, modern websites, web services and online stores. My passion is to design digital user experiences through the bold interface and meaningful interactions.</p> <br/>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                          <h3>Skills</h3>
+                            <div class="media">
+                                <label>Birthday</label>
+                                <p>4th april 1998</p>
+                            </div>
+                            <div class="media">
+                                <label>Age</label>
+                                <p>22 Yr</p>
+                            </div>
+                            <div class="media">
+                                <label>Residence</label>
+                                <p>Canada</p>
+                            </div>
+                            <div class="media">
+                                <label>Address</label>
+                                <p>California, USA</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                          <h3>Office Contact</h3>
+                            <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <br/><br/>
             </div>
-            <div class="col-md-6">
-              <div class="profile-head">
-                <h5>
-                  Varun
-                </h5>
-                <h6>
-                  Web Developer and Designer
-                </h6>
-                <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="profile-work">
-                <p>WORK LINK</p>
-                <a href="">Website Link</a><br />
-                <a href="">Bootsnipp Profile</a><br />
-                <a href="">Bootply Profile</a>
-                <p>SKILLS</p>
-                <a href="">Web Designer</a><br />
-                <a href="">Web Developer</a><br />
-                <a href="">WordPress</a><br />
-                <a href="">WooCommerce</a><br />
-                <a href="">PHP, .Net</a><br />
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="tab-content profile-tab" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>User Id</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Kshiti123</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Name</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Kshiti Ghelani</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Email</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>kshitighelani@gmail.com</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Phone</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>123 456 7890</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Profession</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Web Developer and Designer</p>
-                    </div>
-                  </div>
+            
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt=""/>
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Experience</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Expert</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Hourly Rate</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>10$/hr</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Total Projects</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>230</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>English Level</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Expert</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Availability</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>6 months</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label>Your Bio</label><br />
-                      <p>Your detail description</p>
-                    </div>
-                  </div>
+            </div>
+        </div>
+        <div class="counter">
+            <div class="row">
+                <div class="col-6 col-lg-3">
+                  <h3>Home Contacts</h3>
+                <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-
-    );
-  }
-  else {
-    return (
-      <div class="container emp-profile">
-        <form method="post">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="profile-img">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
-                <div class="file btn btn-lg btn-primary">
-                  Change Photo
-                  <input type="file" name="file" />
+                <div class="col-6 col-lg-3">
+                <h3>Current Address</h3>
+                <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="profile-head">
-                <h5>
-                  Kshiti Ghelani
-                </h5>
-                <h6>
-                  Web Developer and Designer
-                </h6>
-                <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="profile-work">
-                <p>WORK LINK</p>
-                <a href="">Website Link</a><br />
-                <a href="">Bootsnipp Profile</a><br />
-                <a href="">Bootply Profile</a>
-                <p>SKILLS</p>
-                <a href="">Web Designer</a><br />
-                <a href="">Web Developer</a><br />
-                <a href="">WordPress</a><br />
-                <a href="">WooCommerce</a><br />
-                <a href="">PHP, .Net</a><br />
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="tab-content profile-tab" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>User Id</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Kshiti123</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Name</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Kshiti Ghelani</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Email</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>kshitighelani@gmail.com</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Phone</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>123 456 7890</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Profession</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Web Developer and Designer</p>
-                    </div>
-                  </div>
+                <div class="col-6 col-lg-3">
+                  <h3>Permanent Address</h3>
+                <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Experience</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Expert</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Hourly Rate</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>10$/hr</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Total Projects</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>230</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>English Level</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Expert</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Availability</label>
-                    </div>
-                    <div class="col-md-6">
-                      <p>6 months</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label>Your Bio</label><br />
-                      <p>Your detail description</p>
-                    </div>
-                  </div>
+                <div class="col-6 col-lg-3">
+                  <h3>Identification Details</h3>
+                <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
-
-
-
-
-
-
-
-
-//   return (
-
-// };
+        </div>
+        <br/><br/>
+        <div class="counter">
+            <div class="row">
+                <div class="col-6 col-lg-3">
+                  <h3>Personal Details</h3>
+                <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                <h3>Educational Details</h3>
+                <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
+                </div>
+                {/* <div class="col-6 col-lg-3">
+                  <h3>Permanent Address</h3>
+                <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                  <h3>Identification Details</h3>
+                <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
+                </div> */}
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+  );
+};
 
 export default Profile;
