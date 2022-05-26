@@ -15,8 +15,8 @@ const Footer = () => {
      
   return (
     <div className={s.footer}>
-      {/* <span className={s.footerLabel} onClick={handleClick}>Copyright &copy; 2021 squadminds</span> */}
-      {/* <FooterIcon /> */}
+      <span className={s.footerLabel} onClick={handleClick}>Copyright &copy; 2021 squadminds</span> 
+      <FooterIcon />
     </div>
   )
 }

@@ -66,7 +66,7 @@ const Contacts = () => {
     return (
         <>
             <div className="jumbotron jumbotron-fluid">
-
+                <h1>User Table</h1>
             </div>
 
             <Grid item xs={6}>
