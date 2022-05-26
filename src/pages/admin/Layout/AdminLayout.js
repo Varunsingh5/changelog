@@ -17,11 +17,14 @@ import s from "./adminLayout.module.scss";
 // import Text from "../../typography/Profile";
 import AdminDashboard from "../dashboard/AdminDashboard";
 import Tables from "../../Tables/Tables";
-import Notifications from "../../../components/Notification/Notification";
+// import Notifications from "../../../components/Notification/Notification";
 import Charts from "../../uielements/charts/Charts";
-import Icons from "../../uielements/icons/IconsPage";
+// import Icons from "../../uielements/icons/IconsPage";
 import Maps from "../../uielements/maps/google/GoogleMapPage";
 import Profile from "../../profile/Profile";
+import Contacts from "../../AdminSidebar/Contacts"
+import Projects from "../../Projects/Projects"
+import Calendar1 from "../../Calendar/Calendar1"
 
 
 const AdminLayout = (props) => {
@@ -33,22 +36,19 @@ const AdminLayout = (props) => {
         <Sidebar />
         <main className={s.content}>
           <Breadcrumbs url={window.location.pathname} />
+
           <Switch>
             <Route path="/admin" exact render={() => <Redirect to="/admin/dashboard" />} />
             <Route path="/admin/dashboard" exact component={AdminDashboard} />
-            <Route path="/admin/prfile" exact component={Profile} /> 
+            <Route path="/admin/profile" exact component={Profile} />
+            <Route path="/admin/project" exact component={Projects} />
             <Route path="/admin/tables" exact component={Tables} />
-            <Route path="/admin/notifications" exact component={Notifications} />
-            <Route path="/admin/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} />
-            <Route path="/admin/ui-elements/charts" exact component={Charts} />
-            <Route path="/admin/ui-elements/icons" exact component={Icons} />
-
-
-          
-          
-            <Route path="/admin/ui-elements/maps" exact component={Maps} /> 
-
+            <Route path="/admin/calendar" exact component={Calendar1} />
+            <Route path="/admin/charts" exact component={Charts} />
+            <Route path="/admin/maps" exact component={Maps} />
+            <Route path="/admin/contacts" exact component={Contacts} />
             <Route path='*' exact render={() => <Redirect to="/admin" />} />
+
           </Switch>
         </main>
         <Footer />

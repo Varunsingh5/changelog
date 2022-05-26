@@ -27,92 +27,92 @@ const Sidebar = (props) => {
       }, 0);
     }
   }, [props.sidebarOpened])
+  if (localStorage.getItem("role") === "admin") {
+    return (
+      <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })}  >
+        <header className={s.logo}>
+          <SofiaLogo />
+          <span className={s.title}>SQUAMINDS</span>
+        </header>
+        <ul className={s.nav}>
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Dashboard"
+            isHeader
+            iconName={<i className={'eva eva-home-outline'} />}
+            link="/admin/dashboard"
+            index="dashboard"
+            badge="9"
+          />
+          <h5 className={s.navTitle}>TEMPLATE</h5>
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Profile"
+            isHeader
+            iconName={<i className={'eva eva-text-outline'} />}
+            link="/admin/profile"
+            index="typography"
+          />
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Projects"
+            isHeader
+            iconName={<i className={'eva eva-folder-outline'} />}
+            link="/admin/project"
+            index="typography"
+          />
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Leave Table"
+            isHeader
+            iconName={<i className={'eva eva-grid-outline'} />}
+            link="/admin/tables"
+            index="tables"
+          />
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Calendar"
+            isHeader
+            iconName={<i className={'eva eva-calendar-outline'} />}
+            link="/admin/calendar"
+            index="Calendar"
+          />
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Charts"
+            isHeader
+            iconName={<i className={'eva eva-bar-chart-outline'} />}
+            link="/admin/charts"
+            index="Charts"
+          />
 
-  return (
-    <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })}  >
-      <header className={s.logo}>
-        <SofiaLogo />
-        <span className={s.title}>SQUAMINDS</span>
-      </header>
-      <ul className={s.nav}>
-        <LinksGroup
-          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
-          activeItem={props.activeItem}
-          header="Dashboard"
-          isHeader
-          iconName={<i className={'eva eva-home-outline'} />}
-          link="/user/dashboard"
-          index="dashboard"
-          badge="9"
-        />
-        <h5 className={s.navTitle}>TEMPLATE</h5>
-        <LinksGroup
-          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
-          activeItem={props.activeItem}
-          header="Profile"
-          isHeader
-          iconName={<i className={'eva eva-text-outline'} />}
-          link="/user/profile"
-          index="typography"
-        />
-        <LinksGroup
-          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
-          activeItem={props.activeItem}
-          header="Projects"
-          isHeader
-          iconName={<i className={'eva eva-folder-outline'} />}
-          link="/user/project"
-          index="typography"
-        />
-        <LinksGroup
-          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
-          activeItem={props.activeItem}
-          header="Leave Table"
-          isHeader
-          iconName={<i className={'eva eva-grid-outline'} />}
-          link="/user/tables"
-          index="tables"
-        />
-        <LinksGroup
-          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
-          activeItem={props.activeItem}
-          header="Calendar"
-          isHeader
-          iconName={<i className={'eva eva-calendar-outline'} />}
-          link="/user/calendar"
-          index="Calendar"
-        />
-        <LinksGroup
-          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
-          activeItem={props.activeItem}
-          header="Charts"
-          isHeader
-          iconName={<i className={'eva eva-bar-chart-outline'} />}
-          link="/user/charts"
-          index="Charts"
-        />
 
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Maps"
+            isHeader
+            iconName={<i className={'eva eva-map-outline'} />}
+            link="/admin/maps"
+            index="Googlemappage"
+          />
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="USerTable"
+            isHeader
+            iconName={<i className={'eva eva-grid-outline'} />}
+            link="/admin/contacts"
+            index="UserTable"
+          />
 
-        <LinksGroup
-          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
-          activeItem={props.activeItem}
-          header="Maps"
-          isHeader
-          iconName={<i className={'eva eva-map-outline'} />}
-          link="/user/maps"
-          index="Googlemappage"
-        />
-        <LinksGroup
-          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
-          activeItem={props.activeItem}
-          header="USerTable"
-          isHeader
-          iconName={<i className={'eva eva-grid-outline'} />}
-          link="/user/contacts"
-          index="UserTable"
-        />
-
-        {/* <LinksGroup
+          {/* <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
           activeItem={props.activeItem}
           header="UI Elements"
@@ -133,12 +133,123 @@ const Sidebar = (props) => {
           ]}
         /> */}
 
-      </ul>
-      {/* <div className="bg-widget d-flex mt-auto ml-1">
+        </ul>
+        {/* <div className="bg-widget d-flex mt-auto ml-1">
         <Button className="rounded-pill my-3 body-2 d-none d-md-block" type="submit" color="secondary-red">Unlock Full Version</Button>
       </div> */}
-    </nav>
-  );
+      </nav>
+    );
+  }
+  else {
+    return (
+      <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })}  >
+        <header className={s.logo}>
+          <SofiaLogo />
+          <span className={s.title}>SQUAMINDS</span>
+        </header>
+        <ul className={s.nav}>
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Dashboard"
+            isHeader
+            iconName={<i className={'eva eva-home-outline'} />}
+            link="/user/dashboard"
+            index="dashboard"
+            badge="9"
+          />
+          <h5 className={s.navTitle}>TEMPLATE</h5>
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Profile"
+            isHeader
+            iconName={<i className={'eva eva-text-outline'} />}
+            link="/user/profile"
+            index="typography"
+          />
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Projects"
+            isHeader
+            iconName={<i className={'eva eva-folder-outline'} />}
+            link="/user/project"
+            index="typography"
+          />
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Leave Table"
+            isHeader
+            iconName={<i className={'eva eva-grid-outline'} />}
+            link="/user/tables"
+            index="tables"
+          />
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Calendar"
+            isHeader
+            iconName={<i className={'eva eva-calendar-outline'} />}
+            link="/user/calendar"
+            index="Calendar"
+          />
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Charts"
+            isHeader
+            iconName={<i className={'eva eva-bar-chart-outline'} />}
+            link="/user/charts"
+            index="Charts"
+          />
+
+
+          <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="Maps"
+            isHeader
+            iconName={<i className={'eva eva-map-outline'} />}
+            link="/user/maps"
+            index="Googlemappage"
+          />
+          {/* <LinksGroup
+            onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+            activeItem={props.activeItem}
+            header="USerTable"
+            isHeader
+            iconName={<i className={'eva eva-grid-outline'} />}
+            link="/user/contacts"
+            index="UserTable"
+          /> */}
+
+          {/* <LinksGroup
+          onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
+          activeItem={props.activeItem}
+          header="UI Elements"
+          isHeader
+          iconName={<i className={'eva eva-cube-outline'} />}
+          link="/template/uielements"
+          index="uielements"
+          childrenLinks={[
+            {
+              header: 'Charts', link: '/user/ui-elements/charts',
+            },
+            {
+              header: 'Icons', link: '/user/ui-elements/icons',
+            },
+            {
+              header: 'Google Maps', link: '/user/ui-elements/maps',
+            },
+          ]}
+        /> */}
+
+        </ul>
+      </nav>
+    )
+  }
 }
 
 Sidebar.propTypes = {

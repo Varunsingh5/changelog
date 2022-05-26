@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 // -- Custom Components
 // import LayoutComponent from "./components/Layout/Layout";
 import ErrorPage from "./pages/error/ErrorPage";
-import Login from "./pages/login/UserLogin";
+// import Login from "./pages/login/UserLogin";
 import AdminLogin from "./pages/login/AdminLogin";
 import AdminLayout from "./pages/admin/Layout/AdminLayout"
 import UserLayout from "./pages/user/Layout/UserLayout";
@@ -28,8 +28,11 @@ import "./styles/app.scss";
 
 
 import { UserAuthContextProvider } from "../src/components/context/UserAuthContext";
-import UserDashboard from "./pages/user/dashboard/UserDashboard";
-import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
+// import UserDashboard from "./pages/user/dashboard/UserDashboard";
+// import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
+import UserLogin from "./pages/login/UserLogin";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
 
 const PrivateRoute = ({ dispatch, component, ...rest }) => {
   return <Route
@@ -42,60 +45,96 @@ const PrivateRoute = ({ dispatch, component, ...rest }) => {
 
 const App = (props) => {
 
-  // const [role, setRole] = useState("");
+  const [role, setRole] = useState(null);
+  const [isAuth, setisAuth] = useState(false);
 
-  // useEffect(() => {
-  //   setRole(localStorage.getItem("role"));
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [localStorage.getItem("role")]);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
+      setTimeout(() => {
+        setRole(localStorage.getItem("role"))
+        setisAuth(localStorage.getItem("isAuth"))
+      }, 1000);
+    });
 
+    return () => {
+      unsubscribe();
+    };
+  }, []);
   return (
     <div>
       <ToastContainer />
       <UserAuthContextProvider>
-        <Switch>
+        {role === "admin" ? <Switch>
           <Route
             exact
             path="/"
-            render={() =>
-              isAuthenticated(JSON.parse(localStorage.getItem("authenticated"))) ? (
+            render={() => isAuthenticated(JSON.parse(isAuth)) ? (
+              <Redirect to="/admin" />
+            ) : (
+              <Redirect to="/admin/login" />
+            )
+            }
+          />
+          <Route path="/admin/login" render={() => isAuthenticated(JSON.parse(isAuth))
+
+            ? <Redirect to="/admin" /> : <AdminLogin />} />
+
+          <Route path="/admin" render={() => isAuthenticated(JSON.parse(isAuth)) ? <AdminLayout /> : <Redirect to="/admin/login" />} />
+          <Route path='*' exact={true} component={() => <Redirect to="/admin" />} />
+
+        </Switch>
+
+          :
+          role === "user" ? <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => isAuthenticated(JSON.parse(isAuth)) ? (
                 <Redirect to="/user" />
               ) : (
                 <Redirect to="/user/login" />
               )
-            }
-          />
-
-          <Route
-            path="/user/login"
-            render={() =>
-              isAuthenticated(JSON.parse(localStorage.getItem("authenticated"))) ? <Redirect to="/user" /> : <Login />
-            }
-          />
-
-          {/* {role === "user" ? (
-            <Route
-              path="/user/dashboard"
-              element={
-                <UserDashboard />
               }
             />
-          ) : (
-            <Route
-              path="/admin/dashboard"
-              element={
-                <AdminDashboard />
-              }
-            />
-          )} */}
-          <Route path="/user" render={() => <UserLayout />} />
-          <Route path="/admin/login" render={() => <AdminLogin />} />
-          <Route path="/admin" render={() => <AdminLayout />} />
+            <Route path="/user/login" render={() => isAuthenticated(JSON.parse(isAuth))
 
-          {/* <Route path="/register" exact component={Register} /> */}
-          {/* <Route path="/error" exact component={ErrorPage} /> */}
-          {/* <Route path='*' exact={true} component={() => <Redirect to="/error" />} /> */}
-        </Switch>
+              ? <Redirect to="/user" /> : <UserLogin />} />
+
+            <Route path="/user" render={() => isAuthenticated(JSON.parse(isAuth)) ? <UserLayout /> : <Redirect to="/user/login" />} />
+            <Route path='*' exact={true} component={() => <Redirect to="/user" />} />
+          </Switch>
+            :
+            <Switch>
+              <Route
+                path="/"
+                exact
+                render={() => <Redirect to="/user/login" />}
+              />
+              <Route
+                path="/user/login"
+                exact
+                render={() => <UserLogin />}
+              />
+              <Route
+                path="/user"
+                render={() => <Redirect to="/user/login" />}
+              />
+              <Route
+                path="/admin/login"
+                exact
+                render={() => <AdminLogin />}
+              />
+              <Route
+                path="/admin"
+                render={() => <Redirect to="/admin/login" />}
+              />
+              <Route
+                path="/error"
+                render={() => <ErrorPage />}
+              />
+              <Route path='*' exact={true} component={() => <Redirect to="/error" />} />
+            </Switch>
+        }
       </UserAuthContextProvider>
     </div>
   );
