@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,7 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-// import DatePicker1 from './DatePicker';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './Calendar2.css';
+
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,6 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 function createData(name, calories, fat, carbs, protein) {
+  
   return { name, calories, fat, carbs, protein };
 }
 
@@ -42,10 +47,34 @@ const rows = [
 ];
 
 export default function Tables() {
+  const [date, setDate] = useState(new Date());
   return (
     <div>
-     {/* <DatePicker1 /> */}
-    <TableContainer component={Paper}>
+    <div className='app'>
+    <h1 className='text-center'>React Calendar with Range</h1>
+    <div className='calendar-container' style={{marginLeft:"29%"}}>
+    <Calendar
+      onChange={setDate}
+      selectRange={true}
+      defaultView='decade'                                                    
+      />
+    </div>
+    {date.length > 0 ? (
+      <p className='text-center'>
+        <span className='bold'>Start:</span>{' '}
+        {date[0].toDateString()}
+        &nbsp;|&nbsp;
+        <span className='bold'>End:</span> {date[1].toDateString()}
+      </p>
+    ) : (
+      <p className='text-center'>
+        <span className='bold'>Default selected date:</span>{' '}
+        {date.toDateString()}
+      </p>
+    )}
+  </div>
+    <div>
+     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -71,6 +100,7 @@ export default function Tables() {
         </TableBody>
       </Table>
     </TableContainer>
+    </div>
     </div>
   );
 }
