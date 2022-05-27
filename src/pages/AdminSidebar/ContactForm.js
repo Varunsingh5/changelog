@@ -80,7 +80,7 @@ const ContactForm = (props) => {
                 />
             </div>
             <div className="form-group">
-                <Button className="rounded-pill my-3" type="submit" color="secondary-blue" value={props.currentId === '' ? "Save" : "Update"} style={{ backgroundColor: "blue", color: 'white', borderColor: "blue",     marginLeft: "37%"}}> Save</Button>
+                <Button className="rounded-pill my-3" type="submit" color="secondary-blue" value={props.currentId === '' ? "Save" : "Update"} style={{ backgroundColor: "blue", color: 'white', borderColor: "blue", marginLeft: "37%" }}> Save</Button>
                 {/* <button type="submit" value={props.currentId === '' ? "Save" : "Update"} style={{ backgroundColor: "blue", color: 'white', borderColor: "blue", }} >  Save
                 </button> */}
             </div>

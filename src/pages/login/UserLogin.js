@@ -29,8 +29,8 @@ import SofiaLogo from "../../components/Icons/SofiaLogo.js";
 
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { FormControl,Alert } from "react-bootstrap";
-import { query, collection, where, doc, getDoc, setDoc ,  } from "firebase/firestore";
+import { FormControl, Alert } from "react-bootstrap";
+import { query, collection, where, doc, getDoc, setDoc, } from "firebase/firestore";
 import { useUserAuth } from "../../components/context/UserAuthContext";
 import { db } from "../../firebase";
 import moment from "moment";
@@ -118,7 +118,7 @@ const Login = (props) => {
 
   const verifyOtp = async (e) => {
     e.preventDefault();
-    setError("Please enter a valid otp!");
+    setError("");
     if (otp === "" || otp === null) return;
     try {
       console.log("result", result);
@@ -135,7 +135,7 @@ const Login = (props) => {
           if (docSnap.exists()) {
             localStorage.setItem('role', docSnap.data().role);
             // if (docSnap.data().role == "user") {
-              history.push("/user");
+            history.push("/user");
             // }
           }
           else {
@@ -182,12 +182,12 @@ const Login = (props) => {
         <Row className="d-flex align-items-center">
           <Col xs={12} lg={6} className="left-column">
 
-           
+
             <Widget className="widget-auth widget-p-lg">
-            <div className='img1' >
-          <img style={{  width: "40%", marginLeft: "100px", }} src="https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1145930514433441792" />
-        </div>
-        
+              <div className='img1' >
+                <img style={{ width: "40%", marginLeft: "100px", }} src="https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1145930514433441792" alt="squadminds" />
+              </div>
+
               <div className="d-flex align-items-center justify-content-between py-3">
                 <p className="auth-header mb-0">Login</p>
                 <div className="logo-block">
@@ -199,47 +199,46 @@ const Login = (props) => {
               {error && <Alert variant="danger">{error}</Alert>}
 
               <form onSubmit={getOtp} style={{ display: !flag ? "block" : "none" }}>
-              <FormGroup className="mb-3" controlId="formBasicEmail">
-                <PhoneInput
-                  defaultCountry="IN"
-                  value={number}
-                  onChange={setNumber}
-                  placeholder="Enter Phone Number"
-                />
-                <div id="recaptcha-container"></div>
-              </FormGroup>
-              <div className="button-right">
-                <Link to="/">
-                  <Button variant="secondary"  style={{backgroundColor:"blue",color:"white"}}>Cancel</Button>
-                </Link>
-                &nbsp;
-                <Button type="Submit" variant="primary" style={{backgroundColor:"blue",color:"white"}}>
-                  Send Otp
-                </Button>
-              </div>
-              {/* <p style={{ textAlign: "center", marginTop: "20px" }} onClick={() => setValue(true)} >
+                <FormGroup className="mb-3" controlId="formBasicEmail">
+                  <PhoneInput
+                    defaultCountry="IN"
+                    value={number}
+                    onChange={setNumber}
+                    placeholder="Enter Phone Number"
+                  />
+                  <div id="recaptcha-container"></div>
+                </FormGroup>
+                <div className="button-right">
+                  <Link to="/">
+                    <Button variant="secondary" style={{ backgroundColor: "blue", color: "white" }}>Cancel</Button>
+                  </Link>
+                  &nbsp;
+                  <Button type="Submit" variant="primary" style={{ backgroundColor: "blue", color: "white" }}>
+                    Send Otp
+                  </Button>
+                </div>
+                {/* <p style={{ textAlign: "center", marginTop: "20px" }} onClick={() => setValue(true)} >
                 Copyright © 2021 squadminds
               </p> */}
-            </form>
-            <form onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
-              <FormGroup className="mb-3" controlId="formBasicOtp">
-                <FormControl
-                  type="otp"
-                  placeholder="Enter OTP"
-                  onChange={(e) => setOtp(e.target.value)}
-                />
-              </FormGroup>
-              <div className="button-right">
-                <Link to="/">
-                  <Button variant="secondary"  style={{backgroundColor:"blue",color:"white"}}>Cancel</Button>
-                </Link>
-                &nbsp;
-                <Button type="submit" variant="primary"  style={{backgroundColor:"blue",color:"white"}}>
-                  Verify
-                </Button>
-              </div>
-            </form>
-                            
+              </form>
+              <form onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
+                <FormGroup className="mb-3" controlId="formBasicOtp">
+                  <FormControl
+                    type="otp"
+                    placeholder="Enter OTP"
+                    onChange={(e) => setOtp(e.target.value)}
+                  />
+                </FormGroup>
+                <div className="button-right">
+                  <Link to="/">
+                    <Button variant="secondary" style={{ backgroundColor: "blue", color: "white" }}>Cancel</Button>
+                  </Link>
+                  &nbsp;
+                  <Button type="submit" variant="primary" style={{ backgroundColor: "blue", color: "white" }}>
+                    Verify
+                  </Button>
+                </div>
+              </form>
             </Widget>
           </Col>
           <Col xs={0} lg={6} className="right-column">

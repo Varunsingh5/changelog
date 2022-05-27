@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 // import DatePicker1 from './DatePicker';
+import DatePicker from 'react-multi-date-picker';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,35 +43,48 @@ const rows = [
 ];
 
 export default function Tables() {
+  const [startDate, setStartDate] = useState(new Date());
   return (
     <div>
-     {/* <DatePicker1 /> */}
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>name</StyledTableCell>
-            <StyledTableCell align="right">Pending Leave</StyledTableCell>
-            <StyledTableCell align="right">Rejected Leave</StyledTableCell>
-            <StyledTableCell align="right">Taken Leave</StyledTableCell>
-            {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+
+      <div style={{ marginLeft: "27%", alignItems: "center", marginTop: "12%", marginBottom: "7%", }}>
+        <DatePicker
+        placeholder="select the month"
+          selected={startDate}
+          onChange={() => setStartDate()}
+          dateFormat="MM/yyyy"
+          showMonthYearPicker
+          showFullMonthYearPicker
+          showTwoColumnMonthYearPicker
+        />
+      </div>
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>name</StyledTableCell>
+              <StyledTableCell align="right">Pending Leave</StyledTableCell>
+              <StyledTableCell align="right">Rejected Leave</StyledTableCell>
+              <StyledTableCell align="right">Taken Leave</StyledTableCell>
+              {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <StyledTableRow key={row.name}>
+                <StyledTableCell component="th" scope="row">
+                  {row.name}
+                </StyledTableCell>
+                <StyledTableCell align="right">{row.calories}</StyledTableCell>
+                <StyledTableCell align="right">{row.fat}</StyledTableCell>
+                <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+                {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }

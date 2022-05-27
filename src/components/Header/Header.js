@@ -252,11 +252,6 @@ const Header = (props) => {
 }
 
 
-
-
-
-
-
 Header.propTypes = {
   dispatch: PropTypes.func.isRequired,
   sidebarOpened: PropTypes.bool,

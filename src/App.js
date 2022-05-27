@@ -62,7 +62,9 @@ const App = (props) => {
   }, []);
   return (
     <div>
+
       <ToastContainer />
+
       <UserAuthContextProvider>
         {role === "admin" ? <Switch>
           <Route
@@ -85,6 +87,7 @@ const App = (props) => {
         </Switch>
 
           :
+
           role === "user" ? <Switch>
             <Route
               exact

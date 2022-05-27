@@ -15,22 +15,22 @@ import Footer from "../../components/Footer/Footer";
 import loginImage from "../../assets/loginImage.svg";
 import SofiaLogo from "../../components/Icons/SofiaLogo.js";
 import "react-phone-number-input/style.css";
-import { logInWithEmailAndPassword } from "../../firebase";
+// import { logInWithEmailAndPassword } from "../../firebase";
 import {
-  getAuth,
+  // getAuth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
+  // createUserWithEmailAndPassword,
+  // sendPasswordResetEmail,
+  // signOut,
 } from "firebase/auth";
 
 import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
+  // getFirestore,
+  // query,
+  // getDocs,
+  // collection,
+  // where,
+  //addDoc,
   doc,
   getDoc,
 } from "firebase/firestore";

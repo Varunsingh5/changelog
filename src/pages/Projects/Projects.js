@@ -13,15 +13,15 @@ export default function Projects() {
   return (
     <div>
       <ProgressBar />
-    <div style={{ height: 520, width: '100%' }}>
-      <DataGridPro
-        {...data}
-        loading={data.rows.length === 0}
-        rowHeight={38}
-        checkboxSelection
-        disableSelectionOnClick
-      />
-    </div>
+      <div style={{ height: 520, width: '100%' }}>
+        <DataGridPro
+          {...data}
+          loading={data.rows.length === 0}
+          rowHeight={38}
+          checkboxSelection
+          disableSelectionOnClick
+        />
+      </div>
     </div>
   );
 }
