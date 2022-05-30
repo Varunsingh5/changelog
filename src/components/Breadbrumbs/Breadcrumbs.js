@@ -44,7 +44,7 @@ const Breadcrumbs = (props) => {
 
   let routeArr = props.url.split('/');
   let title = routeArr[routeArr.length - 1];
-  let breadcrumbTitle ="lnjknjk"
+  let breadcrumbTitle ="USER NAME"
 
   return (
     <div className={s.breadcrumbs}>
