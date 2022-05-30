@@ -11,7 +11,7 @@ function Calendar1() {
 
   return (
     <div className='app'>
-      <h1 className='text-center'>React Calendar with Range</h1>
+      <h1 className='text-center'style={{textShadow: '0 0 3px pink, 0 0 5px skyblue'}}>Calendar</h1>
       <div className='calendar-container' style={{marginLeft:"29%"}}>
       <Calendar
           onChange={setDate}

@@ -1,300 +1,198 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import {
-  Col,
-  Row,
-  Progress,
-  // Button,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown
-} from "reactstrap";
+import { Col, Row } from "reactstrap";
 import Widget from "../../../components/Widget/Widget.js";
 import ApexActivityChart from "./components/ActivityChart.js";
 
 import meal1 from "../../../assets/dashboard/meal-1.svg";
 import meal2 from "../../../assets/dashboard/meal-2.svg";
 import meal3 from "../../../assets/dashboard/meal-3.svg";
-import upgradeImage from "../../../assets/dashboard/upgradeImage.svg";
-import heartRed from "../../../assets/dashboard/heartRed.svg";
-import heartTeal from "../../../assets/dashboard/heartTeal.svg";
-import heartViolet from "../../../assets/dashboard/heartViolet.svg";
-import heartYellow from "../../../assets/dashboard/heartYellow.svg";
-import gymIcon from "../../../assets/dashboard/gymIcon.svg";
-import therapyIcon from "../../../assets/dashboard/therapyIcon.svg";
-import user from "../../../assets/user.svg";
-// import statsPie from "../../../assets/dashboard/statsPie.svg";
-
-import s from "./adminDashboard.module.scss";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './Calendar2.css';
 
 const AdminDashboard = () => {
-  const [checkboxes, setCheckboxes] = useState([true, false])
+  const [checkboxes, setCheckboxes] = useState([true, false]);
 
   const toggleCheckbox = (id) => {
-    setCheckboxes(checkboxes => checkboxes
-      .map((checkbox, index) => index === id ? !checkbox : checkbox))
-  }
+    setCheckboxes((checkboxes) =>
+      checkboxes.map((checkbox, index) => (index === id ? !checkbox : checkbox))
+    );
+  };
 
   const meals = [meal1, meal2, meal3];
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+  const [date, setDate] = useState(new Date());
+  // const bull = (
+  //   <Box
+  //     component="span"
+  //     sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  //   >
+  //     •
+  //   </Box>
+  // );
 
   return (
     <div>
-      <Row>
-        <Col className="pr-grid-col" xs={12} lg={8}>
-          <Row className="gutter mb-4">
-            <Col className="mb-4 mb-md-0" xs={12} md={6}>
-              <Widget className="">
-                <div className="d-flex justify-content-between widget-p-md">
-                  <div className="headline-3 d-flex align-items-center">Your activity</div>
-                  <UncontrolledDropdown>
-                    <DropdownToggle caret>
-                      &nbsp; Weekly &nbsp;
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem>Daily</DropdownItem>
-                      <DropdownItem>Weekly</DropdownItem>
-                      <DropdownItem>Monthly</DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </div>
-                <ApexActivityChart className="pb-4" />
-              </Widget>
-            </Col>
-            <Col xs={12} md={6}>
-              <Widget className="widget-p-md">
-                <div className="d-flex justify-content-between">
-                  <div className="headline-3 d-flex align-items-center">Your meals</div>
-                  <UncontrolledDropdown>
-                    <DropdownToggle caret>
-                      &nbsp; Weekly &nbsp;
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem>Daily</DropdownItem>
-                      <DropdownItem>Weekly</DropdownItem>
-                      <DropdownItem>Monthly</DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </div>
-                {meals.map((meal) =>
-                  <div key={uuidv4()} className={`mt-4 ${s.widgetBlock}`}>
-                    <div className={s.widgetBody}>
-                      <div className="d-flex">
-                        <img className="img-fluid mr-2" src={meal} alt="..." />
-                        <div className="d-flex flex-column">
-                          <p className="body-2">Salmon salad</p>
-                          <p className="body-3 muted">300 g</p>
-                        </div>
-                      </div>
-                      <div className="body-3 muted">
-                        175 cal
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </Widget>
-            </Col>
-          </Row>
-          <Row className="gutter mb-4">
-            <Col xs={12}>
-              <Widget className="widget-p-none">
-                <div className="d-flex flex-wrap align-items-center justify-content-center">
-                  <div className="d-flex flex-column align-items-center col-12 col-xl-6 p-sm-4">
-                    <p className="headline-1">Upgrade your plan</p>
-                    <p className="body-3">So how did the classical Latin become so </p>
-                    {/* <div className="d-flex justify-content-between my-4">
-                      <Button className="rounded-pill mr-3" color="primary">Go Premium</Button>
-                      <Button className="rounded-pill body-3" outline color="dark">Try for free</Button>
-                    </div> */}
-                  </div>
-                  <div className="d-flex justify-content-center col-12 col-xl-6">
-                    <img className="p-1 img-fluid" src={upgradeImage} alt="..." />
-                  </div>
-                </div>
-              </Widget>
-            </Col>
-          </Row>
-          <Row className="gutter">
-            <Col className="mb-4 mb-xl-0" xs={6} sm={6} xl={3}>
-              <Widget className="widget-p-sm">
-                <div className={s.smallWidget}>
-                  <div className="d-flex mb-4">
-                    <img className="py-1 mr-2 img-fluid" src={heartRed} alt="..." />
-                    <div className="d-flex flex-column">
-                      <p className="headline-3">Text</p>
-                      <p className="body-2">Num<span className="body-3 muted">/ ber</span></p>
-                    </div>
-                  </div>
-                  <div>
-                    <Progress color="secondary-red" className={`progress-xs ${s.mutedPink}`} value="75" />
-                  </div>
-                </div>
-              </Widget>
-            </Col>
-            <Col className="mb-4 mb-xl-0" xs={6} sm={6} xl={3}>
-              <Widget className="widget-p-sm">
-                <div className={s.smallWidget}>
-                  <div className="d-flex mb-4">
-                    <img className="py-1 mr-2 img-fluid" src={heartYellow} alt="..." />
-                    <div className="d-flex flex-column">
-                      <p className="headline-3">Text</p>
-                      <p className="body-2">Num<span className="body-3 muted">/ ber</span></p>
-                    </div>
-                  </div>
-                  <div>
-                    <Progress color="secondary-yellow" className={`progress-xs ${s.mutedYellow}`} value="75" />
-                  </div>
-                </div>
-              </Widget>
-            </Col>
-            <Col xs={6} sm={6} xl={3}>
-              <Widget className="widget-p-sm">
-                <div className={s.smallWidget}>
-                  <div className="d-flex mb-4">
-                    <img className="py-1 mr-2 img-fluid" src={heartTeal} alt="..." />
-                    <div className="d-flex flex-column">
-                      <p className="headline-3">Text</p>
-                      <p className="body-2">Num<span className="body-3 muted">/ ber</span></p>
-                    </div>
-                  </div>
-                  <div>
-                    <Progress color="secondary-cyan" className={`progress-xs ${s.mutedTeal}`} value="75" />
-                  </div>
-                </div>
-              </Widget>
-            </Col>
-            <Col xs={6} sm={6} xl={3}>
-              <Widget className="widget-p-sm">
-                <div className={s.smallWidget}>
-                  <div className="d-flex mb-4">
-                    <img className="py-1 mr-2 img-fluid" src={heartViolet} alt="..." />
-                    <div className="d-flex flex-column">
-                      <p className="headline-3">Text</p>
-                      <p className="body-2">Num<span className="body-3 muted">/ ber</span></p>
-                    </div>
-                  </div>
-                  <div>
-                    <Progress color="violet" className={`progress-xs ${s.mutedViolet}`} value="75" />
-                  </div>
-                </div>
-              </Widget>
-            </Col>
-          </Row>
-        </Col>
-        <Col className="mt-4 mt-lg-0 pl-grid-col" xs={12} lg={4}>
-          <Widget className="widget-p-lg">
-            <div className="d-flex">
-              <img className={s.image} src={user} alt="..." />
-              <div className={s.userInfo}>
-                <p className="headline-3">Christina Karey</p>
-                <p className="body-3 muted">Brasil</p>
-              </div>
-            </div>
-            <div className={s.userParams}>
-              <div className="d-flex flex-column">
-                <p className="headline-3">63 kg</p>
-                <p className="body-3 muted">Weight</p>
-              </div>
-              <div className="d-flex flex-column">
-                <p className="headline-3">175 sm</p>
-                <p className="body-3 muted">Height</p>
-              </div>
-              <div className="d-flex flex-column">
-                <p className="headline-3">28 y.</p>
-                <p className="body-3 muted">Age</p>
-              </div>
-            </div>
-            <div className={s.goals}>
-              <div className={s.goalsTitle}>
-                <p className="headline-3">Your Goals</p>
-                <UncontrolledDropdown>
-                  <DropdownToggle caret>
-                    &nbsp; Weekly &nbsp;
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>Daily</DropdownItem>
-                    <DropdownItem>Weekly</DropdownItem>
-                    <DropdownItem>Monthly</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </div>
-              <div className="d-flex flex-column mt-3">
-                <div className={s.activity}>
-                  <p className="body-2">Sleep</p>
-                  <p className="body-2">92<span className="body-3 muted"> / 160</span></p>
-                </div>
-                <Progress color="secondary-red" className="progress-xs" value={60} />
-              </div>
-              <div className="d-flex flex-column mt-3">
-                <div className={s.activity}>
-                  <p className="body-2">Sport</p>
-                  <p className="body-2">40<span className="body-3 muted"> / 50</span></p>
-                </div>
-                <Progress color="secondary-yellow" className="progress-xs" value={80} />
-              </div>
-              <div className="d-flex flex-column mt-3">
-                <div className={s.activity}>
-                  <p className="body-2">Water</p>
-                  <p className="body-2">25<span className="body-3 muted"> / 40</span></p>
-                </div>
-                <Progress color="secondary-cyan" className="progress-xs" value={40} />
-              </div>
-            </div>
-            <p className="headline-3">Appointments</p>
-            <div className={`mt-3 ${s.widgetBlock}`}>
-              <div className={s.widgetBody}>
-                <div className="d-flex">
-                  <img className="img-fluid mr-2" src={gymIcon} alt="..." />
-                  <div className="d-flex flex-column">
-                    <p className="body-2">02.11 , 12:00 - 13:00</p>
-                    <p className="body-3 muted">Yoga, Airplace Gym</p>
-                  </div>
-                </div>
-                <div className="checkbox checkbox-primary">
-                  <input
-                    id="checkbox0"
-                    type="checkbox"
-                    className="styled"
-                    checked={checkboxes[0]}
-                    onChange={() => toggleCheckbox(0)}
-                  />
-                  <label htmlFor="checkbox0" />
-                </div>
-              </div>
-            </div>
-            <div className={`mt-3 ${s.widgetBlock}`}>
-              <div className={s.widgetBody}>
-                <div className="d-flex">
-                  <img className="img-fluid mr-2" src={therapyIcon} alt="..." />
-                  <div className="d-flex flex-column">
-                    <p className="body-2">03.11 , 16:00 - 17:30</p>
-                    <p className="body-3 muted">Therapy</p>
-                  </div>
-                </div>
-                <div className="checkbox checkbox-primary">
-                  <input
-                    id="checkbox1"
-                    type="checkbox"
-                    className="styled"
-                    checked={checkboxes[1]}
-                    onChange={() => toggleCheckbox(1)}
-                  />
-                  <label htmlFor="checkbox1" />
-                </div>
-              </div>
-            </div>
-            {/* <a className={`btn-secondary-red ${s.statsBtn}`} href="#top" role="button">
-              <img className={s.pieImg} src={statsPie} alt="..." />
+    <div>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <Item>
               <div>
-                <p className="headline-2">STATISTIC</p>
-                <p className="body-3">Download your activity</p>
+                <Row>
+                  <Col>
+                    <Row>
+                      <Col>
+                        <Widget className="">
+                          <div className="d-flex justify-content-between widget-p-md">
+                            <div
+                              style={{
+                                textShadow: "0 0 3px pink, 0 0 5px skyblue",
+                              }}
+                            >
+                              Recent Progress
+                            </div>
+                          </div>
+                          <ApexActivityChart className="pb-4" />
+                        </Widget>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
               </div>
-            </a> */}
-          </Widget>
-        </Col>
-      </Row>
+            </Item>
+          </Grid>
+         
+
+         
+          <Grid item xs={3} style={{marginTop:"5%"}}>
+            <Item>
+              <Card variant="outlined">
+                <CardContent>
+                  <Typography sx={{ fontSize: 14 }}>Total Projects</Typography>
+                  <Typography variant="h5" component="div">
+                    2.562
+                  </Typography>
+                  <Typography variant="body2">
+                    2.65% less than usual
+                    </Typography>
+                </CardContent>
+              </Card>
+            </Item>
+
+            <Item>
+              <Card variant="outlined">
+                <CardContent>
+                  <Typography
+                    sx={{ fontSize: 14 }}>
+                   Total Meetings
+                  </Typography>
+                  <Typography variant="h5" component="div">
+                    17.212
+                  </Typography>
+                 <Typography variant="body2">
+                   5.50 more than usual
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Item>
+          </Grid>
+          
+          <Grid item xs={3} style={{marginTop:"5%"}}>
+            <Item>
+              <Card variant="outlined">
+                <CardContent>
+                  <Typography
+                    sx={{ fontSize: 14 }}>
+                   Completed Projects
+                  </Typography>
+                  <Typography variant="h5" component="div">
+                    2.562
+                  </Typography>
+                  <Typography variant="body2">
+                    8.3% more than usual
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Item>
+
+            <Item>
+              <Card variant="outlined">
+                <CardContent>
+                  <Typography
+                    sx={{ fontSize: 14 }}>
+                   Pending Projects
+                  </Typography>
+                  <Typography variant="h5" component="div">
+                    43
+                  </Typography>
+                  <Typography variant="body2">
+                   -4.25% less than usual
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Item>
+          </Grid>
+        </Grid>
+      </Box>
     </div>
-  )
-}
+    
+    <div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={6}>
+          <Item>
+          <div className='app'>
+    <h6 className='text-center' style={{textShadow: '0 0 3px pink, 0 0 5px skyblue'}}>Calendar</h6>
+    <div className='calendar-container' style={{marginLeft:"8%"}}>
+    <Calendar
+      onChange={setDate}
+      selectRange={true}
+      defaultView='decade'                                                    
+      />
+    </div>
+    {date.length > 0 ? (
+      <p className='text-center'>
+        <span className='bold'>Start:</span>{' '}
+        {date[0].toDateString()}
+        &nbsp;|&nbsp;
+        <span className='bold'>End:</span> {date[1].toDateString()}
+      </p>
+    ) : (
+      <p className='text-center'>
+        <span className='bold'>Default selected date:</span>{' '}
+        {date.toDateString()}
+      </p>
+    )}
+  </div>
+          </Item>
+        </Grid>
+       
+
+       
+        <Grid item xs={3} style={{marginTop:"5%"}}>
+          <Item>
+           
+          </Item>
+        </Grid>
+      </Grid>
+    </Box>
+  </div>
+  </div>
+  );
+};
 
 export default AdminDashboard;

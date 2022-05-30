@@ -41,7 +41,7 @@ if(localStorage.getItem("role")=="admin"){
           header="Dashboard"
           isHeader
           iconName={<i className={'eva eva-home-outline'} />}
-          link="/user/dashboard"
+          link="/admin/dashboard"
           index="dashboard"
           badge="9"
         />
@@ -52,7 +52,7 @@ if(localStorage.getItem("role")=="admin"){
           header="Profile"
           isHeader
           iconName={<i className={'eva eva-person-outline'} />}
-          link="/user/profile"
+          link="/admin/profile"
           index="Profile"
         />
         <LinksGroup
@@ -61,7 +61,7 @@ if(localStorage.getItem("role")=="admin"){
           header="Projects"
           isHeader
           iconName={<i className={'eva eva-folder-outline'} />}
-          link="/user/projects"
+          link="/admin/project"
           index="Projects"
         />
         <LinksGroup
@@ -70,7 +70,7 @@ if(localStorage.getItem("role")=="admin"){
           header="Leave Table"
           isHeader
           iconName={<i className={'eva eva-grid-outline'} />}
-          link="/user/tables"
+          link="/admin/tables"
           index="tables"
         />
         <LinksGroup
@@ -79,7 +79,7 @@ if(localStorage.getItem("role")=="admin"){
           header="Calendar"
           isHeader
           iconName={<i className={'eva eva-calendar-outline'} />}
-          link="/user/calendar"
+          link="/admin/calendar"
           index="Calendar"
         />
         <LinksGroup
@@ -88,7 +88,7 @@ if(localStorage.getItem("role")=="admin"){
           header="Charts"
           isHeader
           iconName={<i className={'eva eva-bar-chart-outline'} />}
-          link="/user/charts"
+          link="/admin/charts"
           index="Charts"
         />
 
@@ -99,7 +99,7 @@ if(localStorage.getItem("role")=="admin"){
           header="Maps"
           isHeader
           iconName={<i className={'eva eva-map-outline'} />}
-          link="/user/maps"
+          link="/admin/maps"
           index="Googlemappage"
         />
         <LinksGroup
@@ -108,7 +108,7 @@ if(localStorage.getItem("role")=="admin"){
           header="UserTable"
           isHeader
           iconName={<i className={'eva eva-grid-outline'} />}
-          link="/user/contacts"
+          link="/admin/contacts"
           index="UserTable"
         />
 
