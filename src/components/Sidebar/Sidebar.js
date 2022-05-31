@@ -27,6 +27,7 @@ const Sidebar = (props) => {
       }, 0);
     }
   }, [props.sidebarOpened])
+
   if (localStorage.getItem("role") == "admin") {
     return (
       <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })}  >
@@ -111,6 +112,8 @@ const Sidebar = (props) => {
             link="/admin/contacts"
             index="UserTable"
           />
+
+
 
           {/* <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
