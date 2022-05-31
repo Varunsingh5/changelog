@@ -32,7 +32,9 @@ const colors = {
 export default function Notification({ ...props }) {
 
   const [notificationOpen, setNotificationClose] = useState(true)
+
   const icon = getIconByType(props.type)
+
   const closeNotification = () => {
     setNotificationClose(!notificationOpen)
   }
@@ -41,12 +43,12 @@ export default function Notification({ ...props }) {
     <>
       <Alert
         className={s.notificationContainer}
-        style={{ backgroundColor: colors[props.type] }}
+        style={{backgroundColor: colors[props.type]}}
         isOpen={notificationOpen}
         toggle={() => closeNotification()}
       >
         <div className={s.notificationIconContainer}>
-          {props.withIcon && <img src={icon} alt="..." />}
+          {props.withIcon && <img src={icon} alt="..."/>}
         </div>
         <div className={s.messageContainer}>
         </div>

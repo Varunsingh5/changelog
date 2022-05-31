@@ -12,7 +12,6 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import Footer from "../../../components/Footer/Footer";
 import Breadcrumbs from "../../../components/Breadbrumbs/Breadcrumbs";
 
-
 // import Text from "../../typography/Profile";
 // import Tables from "../../tables/Tables";
 // import Notifications from "../../notifications/Notifications"
@@ -51,13 +50,11 @@ const UserLayout = (props) => {
             <Route path="/user/charts" exact component={Charts} />
             <Route path="/user/maps" exact component={Maps} />
             <Route path="/user/contacts" exact component={Contacts} />
-
-            {/* <Route path="/user/notifications" exact component={Notifications} /> */}
+             {/* <Route path="/user/notifications" exact component={Notifications} /> */}
             {/* <Route path="/user/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} /> */}
             {/* <Route path="/user/ui-elements/charts" exact component={Charts} />
             <Route path="/user/ui-elements/icons" exact component={Icons} />
             <Route path="/user/ui-elements/maps" exact component={Maps} /> */}
-            
             <Route path='*' exact render={() => <Redirect to="/user" />} />
           </Switch>
         </main>

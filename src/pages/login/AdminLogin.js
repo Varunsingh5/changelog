@@ -15,22 +15,22 @@ import Footer from "../../components/Footer/Footer";
 import loginImage from "../../assets/loginImage.svg";
 import SofiaLogo from "../../components/Icons/SofiaLogo.js";
 import "react-phone-number-input/style.css";
-// import { logInWithEmailAndPassword } from "../../firebase";
+import { logInWithEmailAndPassword } from "../../firebase";
 import {
-  // getAuth,
+  getAuth,
   signInWithEmailAndPassword,
-  // createUserWithEmailAndPassword,
-  // sendPasswordResetEmail,
-  // signOut,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
 } from "firebase/auth";
 
 import {
-  // getFirestore,
-  // query,
-  // getDocs,
-  // collection,
-  // where,
-  //addDoc,
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
   doc,
   getDoc,
 } from "firebase/firestore";
@@ -116,10 +116,12 @@ const AdminLogin = () => {
   return (
     <div>
       <div className="auth-page">
+    
         <Container className="col-12">
           <Row className="d-flex align-items-center">
             <Col xs={12} lg={6} className="left-column">
               <Widget className="widget-auth widget-p-lg">
+              <i class="fa-solid fa-arrow-left-long" onClick={() => { history.push("/user/login")}}></i>
               <div className='img1' >
           <img style={{  width: "40%", marginLeft: "100px", }} src="https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1145930514433441792" />
         </div>

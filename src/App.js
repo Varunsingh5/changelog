@@ -49,12 +49,21 @@ const App = (props) => {
   const [isAuth, setisAuth] = useState(false);
 
   useEffect(() => {
+    setRole(localStorage.getItem("role"))
+        setisAuth(localStorage.getItem("isAuth"))
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
+      console.log("auth in listner=====>>>>",currentuser);
+      if(currentuser){
       setTimeout(() => {
         setRole(localStorage.getItem("role"))
         setisAuth(localStorage.getItem("isAuth"))
       }, 1000);
+    }else{
+      setRole(localStorage.getItem("role"))
+        setisAuth(localStorage.getItem("isAuth"))
+    }
     });
+
 
     return () => {
       unsubscribe();
@@ -62,9 +71,7 @@ const App = (props) => {
   }, []);
   return (
     <div>
-
       <ToastContainer />
-
       <UserAuthContextProvider>
         {role === "admin" ? <Switch>
           <Route
@@ -87,7 +94,6 @@ const App = (props) => {
         </Switch>
 
           :
-
           role === "user" ? <Switch>
             <Route
               exact

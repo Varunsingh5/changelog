@@ -17,7 +17,6 @@ import {
   // getDoc,
 } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
-import { formatPhoneNumber } from "react-phone-number-input";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDe7tQwIh9Y8SqEbLLdwmk8sBJDGGrsOhs",
@@ -101,9 +100,9 @@ const registerWithEmailAndPassword = async (name, email, password, navigate) => 
     alert(err.message);
   }
 };
-const sendInvitation = async (number, navigate) => {
+const sendPasswordReset = async (email, navigate) => {
   try {
-    await sendInvitation(auth, number).then(e => {
+    await sendPasswordResetEmail(auth, email).then(e => {
       alert("Password reset link sent!");
       navigate('/')
     }).catch(err => console.log("rest error", err))
@@ -113,10 +112,13 @@ const sendInvitation = async (number, navigate) => {
     alert(err.message);
   }
 };
-const logout = () => {
-  return signOut(auth).then(e => {
-    localStorage.clear()
-  }).catch(err => console.log("signout error", err))
+const logout = async(history) => {
+  const currentRole =await localStorage.getItem("role");
+  localStorage.clear();
+    await signOut(auth).then(e => {
+      // history.push(`/user`);
+    }).catch(err => console.log("signout error", err))
+  
 };
 export {
   auth,
@@ -124,7 +126,6 @@ export {
   firebaseDb,
   // logInWithEmailAndPassword,
   registerWithEmailAndPassword,
-  // sendPasswordReset,
-  sendInvitation,
+  sendPasswordReset,
   logout,
 };
