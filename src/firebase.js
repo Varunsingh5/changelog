@@ -112,10 +112,13 @@ const sendPasswordReset = async (email, navigate) => {
     alert(err.message);
   }
 };
-const logout = () => {
-  return signOut(auth).then(e => {
-    localStorage.clear()
-  }).catch(err => console.log("signout error", err))
+const logout = async(history) => {
+  const currentRole =await localStorage.getItem("role");
+  localStorage.clear();
+    await signOut(auth).then(e => {
+      // history.push(`/user`);
+    }).catch(err => console.log("signout error", err))
+  
 };
 export {
   auth,
