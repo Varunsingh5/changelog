@@ -28,7 +28,7 @@ const Sidebar = (props) => {
     }
   }, [props.sidebarOpened])
 
-  if (localStorage.getItem("role") == "admin") {
+  if (localStorage.getItem("role") === "admin") {
     return (
       <nav className={cn(s.root, { [s.sidebarOpen]: burgerSidebarOpen })}  >
         <header className={s.logo}>
@@ -44,7 +44,7 @@ const Sidebar = (props) => {
             iconName={<i className={'eva eva-home-outline'} />}
             link="/admin/dashboard"
             index="dashboard"
-            // badge="9"
+          // badge="9"
           />
           <h5 className={s.navTitle}></h5>
           <LinksGroup
@@ -103,13 +103,14 @@ const Sidebar = (props) => {
             link="/admin/maps"
             index="Googlemappage"
           />
+
           <LinksGroup
             onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}
             activeItem={props.activeItem}
             header="UserTable"
             isHeader
             iconName={<i className={'eva eva-grid-outline'} />}
-            link="/admin/contacts"
+            link="/admin/users-table"
             index="UserTable"
           />
 
@@ -159,7 +160,7 @@ const Sidebar = (props) => {
             iconName={<i className={'eva eva-home-outline'} />}
             link="/user/dashboard"
             index="dashboard"
-            // badge="9"
+          // badge="9"
           />
           <h5 className={s.navTitle}></h5>
           <LinksGroup

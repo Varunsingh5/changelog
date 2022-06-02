@@ -50,18 +50,18 @@ const App = (props) => {
 
   useEffect(() => {
     setRole(localStorage.getItem("role"))
-        setisAuth(localStorage.getItem("isAuth"))
+    setisAuth(localStorage.getItem("isAuth"))
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log("auth in listner=====>>>>",currentuser);
-      if(currentuser){
-      setTimeout(() => {
+      console.log("auth in listner=====>>>>", currentuser);
+      if (currentuser) {
+        setTimeout(() => {
+          setRole(localStorage.getItem("role"))
+          setisAuth(localStorage.getItem("isAuth"))
+        }, 1000);
+      } else {
         setRole(localStorage.getItem("role"))
         setisAuth(localStorage.getItem("isAuth"))
-      }, 1000);
-    }else{
-      setRole(localStorage.getItem("role"))
-        setisAuth(localStorage.getItem("isAuth"))
-    }
+      }
     });
 
 

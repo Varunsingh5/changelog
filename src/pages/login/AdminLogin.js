@@ -25,12 +25,12 @@ import {
 } from "firebase/auth";
 
 import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
+  // getFirestore,
+  // query,
+  // getDocs,
+  // collection,
+  // where,
+  // addDoc,
   doc,
   getDoc,
 } from "firebase/firestore";

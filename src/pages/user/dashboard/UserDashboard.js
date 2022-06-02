@@ -53,8 +53,6 @@ export default function Dashboard() {
                 </Typography>
               </Box>
             </Paper>
-
-
           </Grid>
         </Grid>
       </Box>
@@ -73,8 +71,6 @@ export default function Dashboard() {
               </Box>
             </Paper>
 
-
-
           </Grid>
           <Grid item xs={8}>
 
@@ -86,7 +82,6 @@ export default function Dashboard() {
                 </Typography>
               </Box>
             </Paper>
-
           </Grid>
         </Grid>
       </Box>
@@ -121,7 +116,6 @@ export default function Dashboard() {
         <Grid container spacing={2} columns={16}>
           <Grid item xs={8}>
             
-
           <ApexActivityChart />
 
           </Grid>

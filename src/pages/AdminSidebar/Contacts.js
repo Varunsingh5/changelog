@@ -1,130 +1,305 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React, { useState, useEffect } from "react";
-import ContactForm from "./ContactForm"
-import { firebaseDb } from "../../firebase";
+import { db } from "../../firebase";
+import { addDoc, getDocs, collection, onSnapshot } from "firebase/firestore";
+import { Button, } from "reactstrap";
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import { push, child, ref } from "firebase/database";
+import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
+import moment from "moment";
+
 
 
 const Contacts = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [loader, setLoader] = useState(false);
+  const [userCollection, setUserCollection] = useState(null);
 
-    var [contactObjects, setContactObjects] = useState({})
-    var [currentId, setCurrentId] = useState('')
+  const [info, setInfo] = useState([
+    {
+      name: "",
+      phone: "",
+      email: "",
 
-    // useEffect(() => {
-    //     // firebaseDb.child('contacts').on('value', snapshot => {
-    //     //     if (snapshot.val() != null)
-    //     //         setContactObjects({
-    //     //             ...snapshot.val()
-    //     //         })
-    //     //     else
-    //     //         setContactObjects({})
-
-    //     // })
-    // }, [])// similar to componentDidMount
-
-    const addOrEdit = obj => {
-
-        if (currentId === '')
-            firebaseDb.child('users').push(
-                obj,
-                err => {
-                    if (err)
-                        console.log(err)
-                    else
-                        setCurrentId('')
-                }
-            )
-        else
-            firebaseDb.child(`users/${currentId}`).set(
-                obj,
-                err => {
-                    if (err)
-                        console.log(err)
-                    else
-                        setCurrentId('')
-                }
-            )
     }
+  ]);
 
-    const onDelete = key => {
-        if (window.confirm('Are you sure to delete this record?')) {
-            debugger
-            firebaseDb.child(`users/${key}`).remove(
-                err => {
-                    if (err)
-                        console.log(err)
-                    else
-                        setCurrentId('')
-                }
-            )
-        }
+  const collectIdsAndDocs = (doc) => {
+    return { id: doc.id, ...doc.data() };
+  };
+
+
+  useEffect(() => {
+    async function fetchMyAPI() {
+      const querySnapshot = await getDocs(collection(db, "userList"));
+      const array = [];
+      querySnapshot.docs.map((doc) => {
+        array.push({
+          'id': doc.id,
+          'details': doc.data()
+        });
+      });
+      setUserCollection(array)
     }
+    fetchMyAPI();
+  }, [loader]);
 
-    return (
-        <>
-            <div className="jumbotron jumbotron-fluid">
-                <h1>User Table</h1>
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoader(true);
+    await addDoc(collection(db, "userList"), {
+      // db.collection("contacts")
+      // .add({
+      name: name,
+      email: email,
+      phone: phone,
+      address: address,
+      onlineState: " ",
+      role: "user",
+      isVerified: false,
+
+      about: {
+        description: [
+          {
+            about: " ",
+          }
+        ],
+
+        skill: [
+          {
+            programming: " ",
+            web_Scripting: " ",
+            database: " ",
+            tools: " ",
+          }
+        ],
+
+        office_Contact: [
+          {
+            phone_Number: " ",
+            email: " ",
+            skype: " ",
+            linked_In: " ",
+
+          }
+        ],
+      home_Contacts: [
+          {
+            email:" ",
+            phone:" ",
+          
+          }
+        ],
+
+        current_Address: [
+          {
+            house_Number: " ",
+            village: " ",
+            landmarks: " ",
+            city: " ",
+            state: " ",
+            pinCode: " ",
+            country: " ",
+          }
+        ],
+
+        permanent_Address: [
+          {
+            house_Number: " ",
+            village: " ",
+            landmarks: " ",
+            city: " ",
+            state: " ",
+            pinCode: " ",
+            country: " ",
+
+          }
+        ],
+
+        identification_Details: [
+          {
+            adhaar_Card: " ",
+            pan_Card: " ",
+            voter_Card: " ",
+            passport_Number: " ",
+            driving_License: " ",
+            vehicle_Regd_No: " ",
+
+          }
+        ],
+
+        personal_Details: [
+          {
+            father_Name: " ",
+            mother_Name: " ",
+            marital_Status: " ",
+            date_of_birth: " ",
+            hobbies: " ",
+            blood_Group: " " ,
+            nationality: " ",
+
+          }
+        ],
+
+
+        educational_Details: [{
+          qualification: " ",
+          stream: " ",
+          session: " ",
+          year_of_Passing: " ",
+        }],
+
+
+      },
+      created_at: moment.now()
+    })
+
+      .then(() => {
+        setLoader(false);
+        // alert("Your message has been submitted");
+      })
+      .catch((error) => {
+        alert(error.message);
+        setLoader(false);
+      });
+
+    setName("");
+    setEmail("");
+    setPhone("")
+    setAddress("");
+
+
+    // const collectIdsAndDocs = (doc) => {
+    //   return { id: doc.id, ...doc.data() };
+    // };
+
+
+    //   onSnapshot(collection(db, "userList"), (querySnapshot) => {
+    //     let userList = [];
+    //     let array=
+    //     // querySnapshot.forEach((doc) => {
+    //     //   const array.push
+    //     //   userList.push( doc.data());
+    //     // });
+    //     // console.log("Current userList in CA: ", userList);
+    //   })
+
+  };
+
+
+  return (
+    <>
+      {/* {console.log(userCollection)} */}
+      <form className="form" onSubmit={handleSubmit}>
+        <h1>User Table </h1>
+        <div className="form-group input-group">
+          <div className="input-group-prepend">
+            <div className="input-group-text">``
+              <i className="fas fa-user"></i>
+            </div>
+          </div>
+          <input className="form-control" placeholder="Full Name" name="fullName"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+
+        <div className="form-row">
+          <div className="form-group input-group col-md-6">
+
+            <div className="input-group-prepend">
+              <div className="input-group-text">
+                <i className="fas fa-mobile-alt"></i>
+              </div>
             </div>
 
-            <Grid item xs={6}>
+            <input className="form-control" placeholder="Mobile" name="mobile"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
 
-                <Grid xs={6} >
+          </div>
 
-                    <table className="table table-borderless table-stripped" >
+          <div className="form-group input-group col-md-6">
 
-                        <thead className="thead-light">
+            <div className="input-group-prepend">
+              <div className="input-group-text">
+                <i className="fas fa-envelope"></i>
+              </div>
+            </div>
 
-                            <tr>
-                                <th>Full Name</th>
-                                <th>Mobile</th>
-                                <th>Email</th>
-                                <th>Actions</th>
-                            </tr>
+            <input className="form-control" placeholder="Email" name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-                        </thead>
+          </div>
 
-                        <tbody >
-                            {
-                                Object.keys(contactObjects).map(id => {
+        </div>
 
-                                    return <tr key={id} >
+        <div className="form-group">
+          <textarea className="form-control" placeholder="Address" name="address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div>
 
-                                        <td>{contactObjects[id].fullName}</td>
-                                        <td>{contactObjects[id].mobile}</td>
-                                        <td>{contactObjects[id].email}</td>
+        <div className="form-group">
+          <Button type="submit" className="rounded-pill my-3" color="secondary-blue"
+            style={{ backgroundColor: "blue", color: 'white', borderColor: "blue", marginLeft: "37%" }}>
+            Save
+          </Button>
+        </div>
 
-                                        <td>
-                                            <a className="btn text-primary" onClick={() => { setCurrentId(id) }}>
-                                                <i className="fas fa-pencil-alt"></i>
-                                            </a>
-                                            <a className="btn text-danger" onClick={() => { onDelete(id) }}>
-                                                <i className="far fa-trash-alt"></i>
-                                            </a>
-                                        </td>
+        <div  >
+          <h1 style={{ textAlign: "center", marginTop: "20px" }}>User Table</h1>
+        </div>
 
-                                    </tr>
-                                })
-                            }
-                        </tbody>
-                    </table>
+      </form>
 
-                </Grid>
+      <Grid item xs={6}>
 
-            </Grid>
+        <Grid xs={6} >
+          <table className="table table-borderless table-stripped" >
 
-            <Grid xs={6}>
+            <thead className="thead-light">
 
-                <ContactForm {...({ addOrEdit, currentId, contactObjects })} />
+              <tr >
+                <th>Full Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
 
-            </Grid>
+            <tbody >
 
+              {
+                userCollection?.map((id) => {
+                  return (
+                    <tr>
+                      <td>{id.details.name}</td>
 
+                      <td>{id.details.phone}</td>
+                      <td>{id.details.email}</td>
+                      <button onClick={() => { this.editRecord(id.id) }}> edit </button>
+                      <button onClick={() => { this.editRecord(id.id) }}>delete</button>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+        </Grid>
 
-        </>
-    );
-}
+      </Grid>
+      <Grid xs={6}>
+      </Grid>
+    </>
+  );
+};
 
 export default Contacts;
