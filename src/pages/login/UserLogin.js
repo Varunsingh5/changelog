@@ -147,12 +147,90 @@ const Login = (props) => {
               onlineState: "",
               role: "user",
               isVerified: false,
-              created_at: moment.now()
+              created_at: moment.now(),
+              about: {
+                description: [
+                  {
+                    about: " ",
+                  }
+                ],
+                skill: [
+                  {
+                    programming: " ",
+                    web_Scripting: " ",
+                    database: " ",
+                    tools: " ",
+                  }
+                ],
+                office_Contact: [
+                  {
+                    phone_Number: " ",
+                    email: " ",
+                    skype: " ",
+                    linked_In: " ",
+                  }
+                ],
+                home_Contacts: [
+                  {
+                    email: " ",
+                    phone: " ",
+                  }
+                ],
+                current_Address: [
+                  {
+                    house_Number: " ",
+                    village: " ",
+                    landmarks: " ",
+                    city: " ",
+                    state: " ",
+                    pinCode: " ",
+                    country: " ",
+                  }
+                ],
+                permanent_Address: [
+                  {
+                    house_Number: " ",
+                    village: " ",
+                    landmarks: " ",
+                    city: " ",
+                    state: " ",
+                    pinCode: " ",
+                    country: " ",
+                  }
+                ],
+                identification_Details: [
+                  {
+                    adhaar_Card: " ",
+                    pan_Card: " ",
+                    voter_Card: " ",
+                    passport_Number: " ",
+                    driving_License: " ",
+                    vehicle_Regd_No: " ",
+                  }
+                ],
+                personal_Details: [
+                  {
+                    father_Name: " ",
+                    mother_Name: " ",
+                    marital_Status: " ",
+                    date_of_birth: " ",
+                    hobbies: " ",
+                    blood_Group: " ",
+                    nationality: " ",
+                  }
+                ],
+                educational_Details: [{
+                  qualification: " ",
+                  stream: " ",
+                  session: " ",
+                  year_of_Passing: " ",
+                }],
+              },
             })
               .then((e) => {
                 history.push("/user");
               })
-              .catch(error => console.log("error on doc craete phone signup", error))
+              .catch(error => console.log("error on doc create phone signup", error))
           }
         })
         .catch(async (err) => {
