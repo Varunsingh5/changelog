@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase";
-import { addDoc, getDocs, collection, doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
+import { addDoc, getDocs, collection, doc, setDoc, deleteDoc, updateDoc, onSnapshot  } from "firebase/firestore";
 import { Button, } from "reactstrap";
 import Grid from '@mui/material/Grid';
 import moment from "moment";
@@ -12,6 +12,9 @@ const Contacts = () => {
   const [phone, setPhone] = useState("");
   const [loader, setLoader] = useState(false);
   const [userCollection, setUserCollection] = useState(null);
+ 
+
+
   const collectIdsAndDocs = (doc) => {
     return { id: doc.id, ...doc.data() };
   };
@@ -137,7 +140,7 @@ const Contacts = () => {
 
   // useEffect(() => {
 
-  //   async function Deleteuser(){
+  //   async function Edituser(){
   //     const querySnapshot = await setDoc(doc(db,"userList"));
   //     const array1 = [];
   //     querySnapshot.docs.map((doc) => {
@@ -148,7 +151,7 @@ const Contacts = () => {
   //     });
   //     setUserCollection(array1)
   //   }
-  //   Deleteuser();
+  //   Edituser();
   // },[loader]);
 
 
@@ -164,45 +167,63 @@ const Contacts = () => {
   // });
   // };
 
-  const handleEdit = async () => {
-   setLoader(true);
-    await setDoc(collection(db, "userList"), {
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      onlineState: " ",
-      role: "user",
-      isVerified: false,
-      edited_at: moment.now()
-    })
-      .then(() => {
-        setLoader(false);
-      })
-      .catch((error) => {
-        alert(error.message);
-        setLoader(false);
-      });
-    setName("");
-    setEmail("");
-    setPhone("")
-    setAddress("");
-  };
+  // const handleEdit = async () => {
+  //  setLoader(true);
+  //   await setDoc(collection(db, "userList"), {
+  //     name: "",
+  //     email: "",
+  //     phone: "",
+  //     address: "",
+  //     onlineState: " ",
+  //     role: "user",
+  //     isVerified: false,
+  //     edited_at: moment.now()
+  //   })
+  //     .then(() => {
+  //       setLoader(false);
+  //     })
+  //     .catch((error) => {
+  //       alert(error.message);
+  //       setLoader(false);
+  //     });
+  //   setName("");
+  //   setEmail("");
+  //   setPhone("");
+  //   setAddress("");
+  // };
 
-//   const updateDetails = (id, updateDetails) => {
-//     const detailsDoc = doc(db,"userList",id);
-//     return updateDoc(detailsDoc,updateDetails);
-//   };
+  // const updateDetails = (id, updateDetails) => {
+  //   const detailsDoc = doc(db,"userList",id);
+  //   return updateDoc(detailsDoc,updateDetails);
+  // };
 
 //   const handleEdit = (id) => {
 //     console.log("the id of doc is edited:", id);
 //  setDoc(id);
 //   }
 
+//   const handleEdit = onSnapshot(doc(db, "userList", "id"), (doc) => {
+//     console.log("Current data: ", doc.data());
+// });
+
+const handleEdit = async (id) => {
+  document.getElementById("edit_credentials").value = id.id;
+  document.getElementById("name").value = id.details.name;
+  document.getElementById("email").value = id.details.email;
+  document.getElementById("phone").value = id.details.phone;
+  await setDoc(doc(db,"userList", id),{
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+    }
+  );
+};
 
   //Delete Items
   const handleDelete = async (id) => {
     await deleteDoc(doc(db,"userList", id));
+    document.getElementById(id).remove(); 
   };
 
 
@@ -210,13 +231,14 @@ const Contacts = () => {
     <>
       <form className="form" onSubmit={handleSubmit}>
         <h1>User Table </h1>
+        <input type="hidden" value="" id="edit_credentials"></input>
         <div className="form-group input-group">
           <div className="input-group-prepend">
             <div className="input-group-text">``
               <i className="fas fa-user"></i>
             </div>
           </div>
-          <input className="form-control" placeholder="Full Name" name="fullName"
+          <input className="form-control" id="name" placeholder="Full Name" name="fullName"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -228,7 +250,7 @@ const Contacts = () => {
                 <i className="fas fa-mobile-alt"></i>
               </div>
             </div>
-            <input type="number" className="form-control" placeholder="Mobile" name="mobile" 
+            <input type="number" id="phone" className="form-control" placeholder="Mobile" name="mobile" 
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
@@ -239,7 +261,7 @@ const Contacts = () => {
                 <i className="fas fa-envelope"></i>
               </div>
             </div>
-            <input type="email" className="form-control" placeholder="Email" name="email"
+            <input type="email" id="email" className="form-control" placeholder="Email" name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -276,11 +298,11 @@ const Contacts = () => {
               {
                 userCollection?.map((id) => {
                   return (
-                    <tr>
+                    <tr id={id.id}>
                       <td>{id.details.name}</td>
                       <td>{id.details.phone}</td>
                       <td>{id.details.email}</td>
-                      <button onClick={() => { handleEdit(id.id) }}> edit </button>
+                      <button onClick={() => { handleEdit(id) }}> edit </button>
                       <button onClick={() => { handleDelete(id.id) }}>delete</button>
                     </tr>
                   )
