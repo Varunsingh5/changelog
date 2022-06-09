@@ -25,7 +25,7 @@ const LinksGroup = (props) => {
 
   const togglePanelCollapse = (link, e) => {
     props.onActiveSidebarItemChange(link);
-    setHeaderLinkClicked(!headerLinkClicked );
+    setHeaderLinkClicked(!headerLinkClicked);
     e.preventDefault();
   }
 
@@ -47,27 +47,29 @@ const LinksGroup = (props) => {
               {props.iconName}
             </span>
             {props.header}
-            {props.label && <sup className={`text-${props.labelColor || 'warning'}`}>{props.label}</sup> }
+            {props.label && <sup className={`text-${props.labelColor || 'warning'}`}>{props.label}</sup>}
             {props.badge && <Badge className={s.badge} color="secondary-red" pill>{props.badge}</Badge>}
           </NavLink>
         </li>
       );
     }
     return (
-      <li>
-        <NavLink
-          to={props.link}
-          activeClassName={s.headerLinkActive}
-          onClick={(e) => {
-            if (props.link.includes('menu')) {
-              e.preventDefault();
-            }
-          }}
-          exact={exact}
-        >
-          {<i className="fa fa-circle text-primary mr-2"/>} {props.header}
-        </NavLink>
-      </li>
+      <ul>
+        <li>
+          <NavLink
+            to={props.link}
+            activeClassName={s.headerLinkActive}
+            onClick={(e) => {
+              if (props.link.includes('menu')) {
+                e.preventDefault();
+              }
+            }}
+            exact={exact}
+          >
+            {<i className="fa fa-circle text-primary mr-2" />} {props.header}
+          </NavLink>
+        </li>
+      </ul>
     );
   }
   return (
@@ -77,9 +79,9 @@ const LinksGroup = (props) => {
         const { match } = params;
         return (
           <li className={classnames({ [s.headerLink]: props.isHeader }, props.className)}>
-            <a className={classnames("d-flex", { [s.headerLinkActive]: match }, { [s.collapsed]: isOpen }, )}
-               onClick={(e) => togglePanelCollapse(props.link, e)}
-               href="#top"
+            <a className={classnames("d-flex", { [s.headerLinkActive]: match }, { [s.collapsed]: isOpen },)}
+              onClick={(e) => togglePanelCollapse(props.link, e)}
+              href="#top"
             >
               {props.isHeader
                 ? <span className={s.icon}>

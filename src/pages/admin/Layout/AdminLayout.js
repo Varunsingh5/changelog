@@ -46,7 +46,7 @@ const AdminLayout = (props) => {
             <Route path="/admin/calendar" exact component={Calendar1} />
             <Route path="/admin/charts" exact component={Charts} />
             <Route path="/admin/maps" exact component={Maps} />
-            <Route path="/admin/users-table" exact component={Contacts} />
+            <Route path="/admin/contacts" exact component={Contacts} />
             <Route path='*' exact render={() => <Redirect to="/admin" />} />
 
           </Switch>

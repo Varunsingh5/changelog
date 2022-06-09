@@ -25,37 +25,18 @@ function GoogleMapPage() {
     setMap(null)
   }, [])
 
-  if (localStorage.getItem("role") === "admin") {
-    return isLoaded ? (
-      <div style={{ height: "800px" }}>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={5}
-          onUnmount={onUnmount}
-        >
-          <Marker position={{ lat: 40.6976701, lng: -74.2598654 }} />
-        </GoogleMap>
-      </div>
-    ) : <></>
-  }
-
-  else {
-    return isLoaded ? (
-      <div style={{ height: "800px" }}>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={5}
-          onUnmount={onUnmount}
-        >
-          <Marker position={{ lat: 40.6976701, lng: -74.2598654 }} />
-        </GoogleMap>
-      </div>
-    ) : <></>
-
-  }
-
+  return isLoaded ? (
+    <div style={{height: "800px"}}>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={5}
+        onUnmount={onUnmount}
+      >
+        <Marker position={{ lat: 40.6976701, lng: -74.2598654 }}/>
+      </GoogleMap>
+    </div>
+  ) : <></>
 }
 
 export default React.memo(GoogleMapPage);

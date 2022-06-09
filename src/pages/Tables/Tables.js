@@ -11,8 +11,6 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar2.css';
 
-import Grid from '@mui/material/Grid';
-
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -35,219 +33,75 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, PENDINGLEAVE, RejectedLeave, TakenLeave,) {
-
-  return { name, PENDINGLEAVE, RejectedLeave, TakenLeave, };
+function createData(name, calories, fat, carbs, protein) {
+  
+  return { name, calories, fat, carbs, protein };
 }
 
-
+const rows = [
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+];
 
 export default function Tables() {
-  const rows = [
-    createData("varun", 159, 6.0, 24,),
-    createData("dfz", 237, 9.0, 37,),
-    createData("dfxg", 262, 16.0, 24,),
-    createData("gf", 305, 3.7, 67,),
-    createData("dgdf", 356, 16.0, 49,),
-  ];
-
   const [date, setDate] = useState(new Date());
-
-  if (localStorage.getItem("role") === "admin") {
-
-    return (
-      <div>
-
-
-
-
-
-        <Grid container spacing={2}>
-          <Grid item xs>
-
-
-          </Grid>
-          <Grid item xs={8}>
-            <h1 style={{ textShadow: '0 0 3px pink, 0 0 5px skyblue', marginLeft: "7%" }}>Calendar</h1>
-          </Grid>
-          <Grid item xs>
-
-
-          </Grid>
-        </Grid>
-
-
-        <Grid container >
-          <Grid item xs={2}>
-
-          </Grid>
-          <Grid item xs={8}>
-
-            <Calendar
-              onChange={setDate}
-              selectRange={true}
-              defaultView='decade'
-            />
-
-            {date.length > 0 ? (
-              <p className='text-center'>
-                <span className='bold'>Start:</span>{' '}
-                {date[0].toDateString()}
-                &nbsp;|&nbsp;
-                <span className='bold'>End:</span> {date[1].toDateString()}
-              </p>
-            ) : (
-              <p className='text-center'>
-                <span className='bold'>Default selected date:</span>{' '}
-                {date.toDateString()}
-              </p>
-            )}
-
-          </Grid>
-          <Grid item xs={2}>
-
-
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={2}>
-          <Grid item xs>
-
-          </Grid>
-          <Grid item xs={8}>
-            <TableContainer component={Paper}>
-              <Table aria-label="customized table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>name</StyledTableCell>
-                    <StyledTableCell align="right" >Pending Leave</StyledTableCell>
-                    <StyledTableCell align="right">Rejected Leave</StyledTableCell>
-                    <StyledTableCell align="right">Taken Leave</StyledTableCell>
-                    {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <StyledTableRow key={row.name}>
-                      <StyledTableCell component="th" scope="row">
-                        {row.name}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">{row.PENDINGLEAVE}</StyledTableCell>
-                      <StyledTableCell align="right">{row.RejectedLeave}</StyledTableCell>
-                      <StyledTableCell align="right">{row.TakenLeave}</StyledTableCell>
-                      {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-          <Grid item xs={2}>
-
-          </Grid>
-        </Grid>
-
-      </div>
-    );
-
-  }
-
-
-  else {
-    return (
-      <div>
-
-
-        <Grid container spacing={2}>
-          <Grid item xs>
-          </Grid>
-
-          <Grid item xs={8}>
-            <h1 style={{ textShadow: '0 0 3px pink, 0 0 5px skyblue', marginLeft: "7%" }}>Calendar</h1>
-          </Grid>
-          <Grid item xs>
-          </Grid>
-
-        </Grid>
-
-
-        <Grid container >
-          <Grid item xs={2}>
-          </Grid>
-
-          <Grid item xs={8}>
-
-            <Calendar
-              onChange={setDate}
-              selectRange={true}
-              defaultView='decade'
-            />
-
-            {date.length > 0 ? (
-              <p className='text-center'>
-                <span className='bold'>Start:</span>{' '}
-                {date[0].toDateString()}
-                &nbsp;|&nbsp;
-                <span className='bold'>End:</span> {date[1].toDateString()}
-              </p>
-            ) : (
-              <p className='text-center'>
-                <span className='bold'>Default selected date:</span>{' '}
-                {date.toDateString()}
-              </p>
-            )}
-
-          </Grid>
-
-          <Grid item xs={2}>
-
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={3}>
-          <Grid item xs={2}>
-
-          </Grid>
-          <Grid item xs={8}>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>name</StyledTableCell>
-                    <StyledTableCell align="right" >Pending Leave</StyledTableCell>
-                    <StyledTableCell align="right">Rejected Leave</StyledTableCell>
-                    <StyledTableCell align="right">Taken Leave</StyledTableCell>
-                    {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <StyledTableRow key={row.name}>
-                      <StyledTableCell component="th" scope="row">
-                        {row.name}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">{row.PENDINGLEAVE}</StyledTableCell>
-                      <StyledTableCell align="right">{row.RejectedLeave}</StyledTableCell>
-                      <StyledTableCell align="right">{row.TakenLeave}</StyledTableCell>
-                      {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-
-          </Grid>
-          <Grid item xs={2}>
-
-          </Grid>
-        </Grid>
-
-
-
-
-
-      </div>
-    );
-  }
-
+  return (
+    <div>
+    <div className='app'>
+    <h1 className='text-center' style={{textShadow: '0 0 3px pink, 0 0 5px skyblue'}}>Calendar</h1>
+    <div className='calendar-container' style={{marginLeft:"29%"}}>
+    <Calendar
+      onChange={setDate}
+      selectRange={true}
+      defaultView='decade'                                                    
+      />
+    </div>
+    {date.length > 0 ? (
+      <p className='text-center'>
+        <span className='bold'>Start:</span>{' '}
+        {date[0].toDateString()}
+        &nbsp;|&nbsp;
+        <span className='bold'>End:</span> {date[1].toDateString()}
+      </p>
+    ) : (
+      <p className='text-center'>
+        <span className='bold'>Default selected date:</span>{' '}
+        {date.toDateString()}
+      </p>
+    )}
+  </div>
+  <br />
+    <div>
+     <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>name</StyledTableCell>
+            <StyledTableCell align="right">Pending Leave</StyledTableCell>
+            <StyledTableCell align="right">Rejected Leave</StyledTableCell>
+            <StyledTableCell align="right">Taken Leave</StyledTableCell>
+            {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <StyledTableRow key={row.name}>
+              <StyledTableCell component="th" scope="row">
+                {row.name}
+              </StyledTableCell>
+              <StyledTableCell align="right">{row.calories}</StyledTableCell>
+              <StyledTableCell align="right">{row.fat}</StyledTableCell>
+              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+              {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+    </div>
+    </div>
+  );
 }
