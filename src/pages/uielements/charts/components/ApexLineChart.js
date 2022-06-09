@@ -22,15 +22,7 @@ const chartSettings = {
   },
   xaxis: {
     type: "category",
-    categories: [
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat",
-      "Sun",
-    ],
+    categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     labels: {
       style: {
         colors: "#6B859E",
@@ -57,8 +49,8 @@ const chartSettings = {
       shadeIntensity: 1,
       opacityFrom: 0.7,
       opacityTo: 1,
-      stops: [40, 90, 100]
-    }
+      stops: [40, 90, 100],
+    },
   },
   colors: ["#4D53E0", "#41D5E2"],
   chart: {

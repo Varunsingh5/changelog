@@ -1,9 +1,6 @@
 import React from "react";
 
-import {
-  Col,
-  Row,
-} from "reactstrap";
+import { Col, Row } from "reactstrap";
 import Widget from "../../../components/Widget/Widget";
 import ApexRadarChart from "./components/ApexRadarChart";
 import RechartsPieChart from "./components/RechartsPieChart";
@@ -20,7 +17,7 @@ const Charts = () => {
             <Col>
               <Widget className="widget-p-md">
                 <div className="headline-2 mb-3">Line Column Mixed Chart</div>
-                <ApexLineColumnChart/>
+                <ApexLineColumnChart />
               </Widget>
             </Col>
           </Row>
@@ -28,7 +25,7 @@ const Charts = () => {
             <Col>
               <Widget className="widget-p-md">
                 <div className="headline-2 mb-3">Column Area Mixed Chart</div>
-                <ApexColumnAreaChart/>
+                <ApexColumnAreaChart />
               </Widget>
             </Col>
           </Row>
@@ -38,13 +35,13 @@ const Charts = () => {
             <Col xs={12} xl={6}>
               <Widget className="widget-p-md">
                 <div className="headline-2 mb-3">Donut chart</div>
-                <RechartsPieChart/>
+                <RechartsPieChart />
               </Widget>
             </Col>
             <Col className="mt-4 mt-xl-0" xs={12} xl={6}>
               <Widget className="widget-p-md">
                 <div className="headline-2">Radar Chart</div>
-                <ApexRadarChart/>
+                <ApexRadarChart />
               </Widget>
             </Col>
           </Row>
@@ -52,7 +49,7 @@ const Charts = () => {
             <Col>
               <Widget className="widget-p-md">
                 <div className="headline-2 mb-3">Line Chart</div>
-                <ApexLineChart/>
+                <ApexLineChart />
               </Widget>
             </Col>
           </Row>
@@ -60,6 +57,6 @@ const Charts = () => {
       </Row>
     </div>
   );
-}
+};
 
 export default Charts;

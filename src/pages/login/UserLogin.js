@@ -26,19 +26,22 @@ import SofiaLogo from "../../components/Icons/SofiaLogo.js";
 // import GithubIcon from "../../components/Icons/AuthIcons/GithubIcon.js";
 // import LinkedinIcon from "../../components/Icons/AuthIcons/LinkedinIcon.js";
 
-
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { FormControl,Alert } from "react-bootstrap";
-import { query, collection, where, doc, getDoc, setDoc ,  } from "firebase/firestore";
+import { FormControl, Alert } from "react-bootstrap";
+import {
+  query,
+  collection,
+  where,
+  doc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 import { useUserAuth } from "../../components/context/UserAuthContext";
 import { db } from "../../firebase";
 import moment from "moment";
 
-
-
 const Login = (props) => {
-
   // const { setUpRecaptha } = useUserAuth();
   const [error, setError] = useState("");
   const [number, setNumber] = useState("");
@@ -48,7 +51,6 @@ const Login = (props) => {
   // const [value, setValue] = useState(false);
   const { setUpRecaptha } = useUserAuth();
 
-
   const history = useHistory();
   // const [state, setState] = useState({
   //   email: 'admin@flatlogic.com',
@@ -56,15 +58,15 @@ const Login = (props) => {
   // })
 
   const doLogin = (e) => {
-
     e.preventDefault();
-    props.dispatch(loginUser({ password: state.password, email: state.email, history }))
-  }
+    props.dispatch(
+      loginUser({ password: state.password, email: state.email, history })
+    );
+  };
 
   const changeCreds = (event) => {
-    setState({ ...state, [event.target.name]: event.target.value })
-  }
-
+    setState({ ...state, [event.target.name]: event.target.value });
+  };
 
   // const handleClick = () => {
   // console.log("jkhbhjbhj");
@@ -86,7 +88,6 @@ const Login = (props) => {
     }
   };
 
-
   // const getOtp = async (e) => {
   //   e.preventDefault();
   //   console.log(number);
@@ -102,7 +103,6 @@ const Login = (props) => {
   //     setError(err.message);
   //   }
   // };
-
 
   // const verifyOtp = async (e) => {
   //   e.preventDefault();
@@ -122,23 +122,26 @@ const Login = (props) => {
     if (otp === "" || otp === null) return;
     try {
       console.log("result", result);
-      await result.confirm(otp)
+      await result
+        .confirm(otp)
         .then(async (confirmationResult) => {
           console.log("jdvfsdnhfjdshi", confirmationResult);
-          localStorage.setItem('isAuth', 'true')
-          localStorage.setItem('user', JSON.stringify(confirmationResult?.user))
-          localStorage.setItem('role', "user");
+          localStorage.setItem("isAuth", "true");
+          localStorage.setItem(
+            "user",
+            JSON.stringify(confirmationResult?.user)
+          );
+          localStorage.setItem("role", "user");
           console.log("SSzfasfas", confirmationResult?.user);
 
           const docRef = doc(db, "users", confirmationResult?.user?.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
-            localStorage.setItem('role', docSnap.data().role);
+            localStorage.setItem("role", docSnap.data().role);
             // if (docSnap.data().role == "user") {
-              history.push("/user");
+            history.push("/user");
             // }
-          }
-          else {
+          } else {
             await setDoc(docRef, {
               uid: confirmationResult?.user?.uid,
               name: "",
@@ -152,7 +155,7 @@ const Login = (props) => {
                 description: [
                   {
                     about: " ",
-                  }
+                  },
                 ],
                 skill: [
                   {
@@ -160,7 +163,7 @@ const Login = (props) => {
                     web_Scripting: " ",
                     database: " ",
                     tools: " ",
-                  }
+                  },
                 ],
                 office_Contact: [
                   {
@@ -168,13 +171,13 @@ const Login = (props) => {
                     email: " ",
                     skype: " ",
                     linked_In: " ",
-                  }
+                  },
                 ],
                 home_Contacts: [
                   {
                     email: " ",
                     phone: " ",
-                  }
+                  },
                 ],
                 current_Address: [
                   {
@@ -185,7 +188,7 @@ const Login = (props) => {
                     state: " ",
                     pinCode: " ",
                     country: " ",
-                  }
+                  },
                 ],
                 permanent_Address: [
                   {
@@ -196,7 +199,7 @@ const Login = (props) => {
                     state: " ",
                     pinCode: " ",
                     country: " ",
-                  }
+                  },
                 ],
                 identification_Details: [
                   {
@@ -206,7 +209,7 @@ const Login = (props) => {
                     passport_Number: " ",
                     driving_License: " ",
                     vehicle_Regd_No: " ",
-                  }
+                  },
                 ],
                 personal_Details: [
                   {
@@ -217,30 +220,33 @@ const Login = (props) => {
                     hobbies: " ",
                     blood_Group: " ",
                     nationality: " ",
-                  }
+                  },
                 ],
-                educational_Details: [{
-                  qualification: " ",
-                  stream: " ",
-                  session: " ",
-                  year_of_Passing: " ",
-                }],
+                educational_Details: [
+                  {
+                    qualification: " ",
+                    stream: " ",
+                    session: " ",
+                    year_of_Passing: " ",
+                  },
+                ],
               },
             })
               .then((e) => {
                 history.push("/user");
               })
-              .catch(error => console.log("error on doc create phone signup", error))
+              .catch((error) =>
+                console.log("error on doc create phone signup", error)
+              );
           }
         })
         .catch(async (err) => {
           console.log("error in confirm otp", err);
-        })
+        });
     } catch (err) {
       setError(err.message);
     }
   };
-
 
   const fetchUserName = async (user) => {
     try {
@@ -248,7 +254,7 @@ const Login = (props) => {
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
       setName(data.name);
-      return ({ user })
+      return { user };
     } catch (err) {
       console.error(err);
     }
@@ -259,13 +265,14 @@ const Login = (props) => {
       <Container className="col-12">
         <Row className="d-flex align-items-center">
           <Col xs={12} lg={6} className="left-column">
-
-           
             <Widget className="widget-auth widget-p-lg">
-            <div className='img1' >
-          <img style={{  width: "40%", marginLeft: "100px", }} src="https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1145930514433441792" />
-        </div>
-        
+              <div className="img1">
+                <img
+                  style={{ width: "40%", marginLeft: "100px" }}
+                  src="https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1145930514433441792"
+                />
+              </div>
+
               <div className="d-flex align-items-center justify-content-between py-3">
                 <p className="auth-header mb-0">Login</p>
                 <div className="logo-block">
@@ -276,48 +283,71 @@ const Login = (props) => {
               {/*   */}
               {error && <Alert variant="danger">{error}</Alert>}
 
-              <form onSubmit={getOtp} style={{ display: !flag ? "block" : "none" }}>
-              <FormGroup className="mb-3" controlId="formBasicEmail">
-                <PhoneInput
-                  defaultCountry="IN"
-                  value={number}
-                  onChange={setNumber}
-                  placeholder="Enter Phone Number"
-                />
-                <div id="recaptcha-container"></div>
-              </FormGroup>
-              <div className="button-right">
-                <Link to="/">
-                  <Button variant="secondary"  style={{backgroundColor:"blue",color:"white"}}>Cancel</Button>
-                </Link>
-                &nbsp;
-                <Button type="Submit" variant="primary" style={{backgroundColor:"blue",color:"white"}}>
-                  Send Otp
-                </Button>
-              </div>
-              {/* <p style={{ textAlign: "center", marginTop: "20px" }} onClick={() => setValue(true)} >
+              <form
+                onSubmit={getOtp}
+                style={{ display: !flag ? "block" : "none" }}
+              >
+                <FormGroup className="mb-3" controlId="formBasicEmail">
+                  <PhoneInput
+                    defaultCountry="IN"
+                    value={number}
+                    onChange={setNumber}
+                    placeholder="Enter Phone Number"
+                  />
+                  <div id="recaptcha-container"></div>
+                </FormGroup>
+                <div className="button-right">
+                  <Link to="/">
+                    <Button
+                      variant="secondary"
+                      style={{ backgroundColor: "blue", color: "white" }}
+                    >
+                      Cancel
+                    </Button>
+                  </Link>
+                  &nbsp;
+                  <Button
+                    type="Submit"
+                    variant="primary"
+                    style={{ backgroundColor: "blue", color: "white" }}
+                  >
+                    Send Otp
+                  </Button>
+                </div>
+                {/* <p style={{ textAlign: "center", marginTop: "20px" }} onClick={() => setValue(true)} >
                 Copyright © 2021 squadminds
               </p> */}
-            </form>
-            <form onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
-              <FormGroup className="mb-3" controlId="formBasicOtp">
-                <FormControl
-                  type="otp"
-                  placeholder="Enter OTP"
-                  onChange={(e) => setOtp(e.target.value)}
-                />
-              </FormGroup>
-              <div className="button-right">
-                <Link to="/">
-                  <Button variant="secondary"  style={{backgroundColor:"blue",color:"white"}}>Cancel</Button>
-                </Link>
-                &nbsp;
-                <Button type="submit" variant="primary"  style={{backgroundColor:"blue",color:"white"}}>
-                  Verify
-                </Button>
-              </div>
-            </form>
-                            
+              </form>
+              <form
+                onSubmit={verifyOtp}
+                style={{ display: flag ? "block" : "none" }}
+              >
+                <FormGroup className="mb-3" controlId="formBasicOtp">
+                  <FormControl
+                    type="otp"
+                    placeholder="Enter OTP"
+                    onChange={(e) => setOtp(e.target.value)}
+                  />
+                </FormGroup>
+                <div className="button-right">
+                  <Link to="/">
+                    <Button
+                      variant="secondary"
+                      style={{ backgroundColor: "blue", color: "white" }}
+                    >
+                      Cancel
+                    </Button>
+                  </Link>
+                  &nbsp;
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    style={{ backgroundColor: "blue", color: "white" }}
+                  >
+                    Verify
+                  </Button>
+                </div>
+              </form>
             </Widget>
           </Col>
           <Col xs={0} lg={6} className="right-column">
@@ -329,12 +359,12 @@ const Login = (props) => {
       </Container>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 Login.propTypes = {
   dispatch: PropTypes.func.isRequired,
-}
+};
 
 function mapStateToProps(state) {
   return {

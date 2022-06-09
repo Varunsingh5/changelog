@@ -38,10 +38,11 @@ const chartSettings = {
 };
 
 const ApexRadarChart = () => {
-
   return (
     <div style={{ height: "316px" }}>
-      <div className="my-3 body-3 muted">Different types of notifications for lots of use cases. Custom classes</div>
+      <div className="my-3 body-3 muted">
+        Different types of notifications for lots of use cases. Custom classes
+      </div>
       <ReactApexChart
         options={chartSettings}
         series={chartSettings.series}
