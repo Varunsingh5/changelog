@@ -6,7 +6,9 @@ import {
 
 const initialState = {
   sidebarOpened: false,
-  activeItem: JSON.parse(localStorage.getItem('staticSidebar')) ? window.location.pathname : null,
+  activeItem: JSON.parse(localStorage.getItem("staticSidebar"))
+    ? window.location.pathname
+    : null,
 };
 
 export default function runtime(state = initialState, action) {

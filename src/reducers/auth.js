@@ -4,18 +4,21 @@ import {
   LOGOUT_SUCCESS,
 } from "../actions/auth.js";
 
-const authenticated = localStorage.getItem('authenticated');
+const authenticated = localStorage.getItem("authenticated");
 
-export default function auth(state = {
-  isFetching: false,
-  isAuthenticated: authenticated,
-}, action) {
+export default function auth(
+  state = {
+    isFetching: false,
+    isAuthenticated: authenticated,
+  },
+  action
+) {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        errorMessage: '',
+        errorMessage: "",
       });
     case LOGIN_FAILURE:
       return Object.assign({}, state, {

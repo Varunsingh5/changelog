@@ -1,8 +1,8 @@
 const hasToken = (token) => {
-  console.log("token",token);
+  console.log("token", token);
   if (token) {
-    return true
+    return true;
   }
-}
+};
 
 export default hasToken;

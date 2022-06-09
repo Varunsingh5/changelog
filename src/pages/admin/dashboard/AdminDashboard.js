@@ -193,7 +193,7 @@ const AdminDashboard = () => {
           </Grid>
         </Box>
       </div>
-      <div style={{marginTop:"2%"}}>
+      <div style={{ marginTop: "2%" }}>
         <table className="table">
           <thead className="thead-dark">
             <tr>

@@ -22,10 +22,9 @@ import Charts from "../../uielements/charts/Charts";
 // import Icons from "../../uielements/icons/IconsPage";
 import Maps from "../../uielements/maps/google/GoogleMapPage";
 import Profile from "../../profile/Profile";
-import Contacts from "../../AdminSidebar/Contacts"
-import Projects from "../../Projects/Projects"
-import Calendar1 from "../../Calendar/Calendar1"
-
+import Contacts from "../../AdminSidebar/Contacts";
+import Projects from "../../Projects/Projects";
+import Calendar1 from "../../Calendar/Calendar1";
 
 const AdminLayout = (props) => {
   console.log("in layout");
@@ -38,7 +37,11 @@ const AdminLayout = (props) => {
           <Breadcrumbs url={window.location.pathname} />
 
           <Switch>
-            <Route path="/admin" exact render={() => <Redirect to="/admin/dashboard" />} />
+            <Route
+              path="/admin"
+              exact
+              render={() => <Redirect to="/admin/dashboard" />}
+            />
             <Route path="/admin/dashboard" exact component={AdminDashboard} />
             <Route path="/admin/profile" exact component={Profile} />
             <Route path="/admin/project" exact component={Projects} />
@@ -47,20 +50,19 @@ const AdminLayout = (props) => {
             <Route path="/admin/charts" exact component={Charts} />
             <Route path="/admin/maps" exact component={Maps} />
             <Route path="/admin/contacts" exact component={Contacts} />
-            <Route path='*' exact render={() => <Redirect to="/admin" />} />
-
+            <Route path="*" exact render={() => <Redirect to="/admin" />} />
           </Switch>
         </main>
         <Footer />
       </div>
     </div>
   );
-}
+};
 
 AdminLayout.propTypes = {
   sidebarOpened: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
-}
+};
 
 function mapStateToProps(store) {
   return {

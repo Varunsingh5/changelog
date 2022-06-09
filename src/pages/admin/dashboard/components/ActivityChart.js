@@ -1,35 +1,37 @@
 import React from "react";
 import ApexCharts from "react-apexcharts";
 
-const series = [{
-  name: 'Your Activity',
-  type: 'column',
-  data: [350, 275, 375, 375, 300, 225, 275]
-}, {
-  name: 'Your Goal',
-  type: 'line',
-  data: [400, 350, 450, 400, 350, 300, 350]
-
-}];
+const series = [
+  {
+    name: "Your Activity",
+    type: "column",
+    data: [350, 275, 375, 375, 300, 225, 275],
+  },
+  {
+    name: "Your Goal",
+    type: "line",
+    data: [400, 350, 450, 400, 350, 300, 350],
+  },
+];
 
 const chartSettings = {
   colors: ["#FFCA41", "#43BC13"],
   chart: {
     height: 350,
-    type: 'line',
+    type: "line",
     toolbar: {
       show: false,
     },
   },
   stroke: {
     curve: "straight",
-    width: [0, 1]
+    width: [0, 1],
   },
   dataLabels: {
     enabled: true,
     enabledOnSeries: [1],
     style: {
-      fontSize: '10px',
+      fontSize: "10px",
       fontWeight: 500,
     },
     background: {
@@ -42,12 +44,12 @@ const chartSettings = {
     floating: true,
   },
   xaxis: {
-    type: 'category',
+    type: "category",
     axisBorder: {
-      show: false
+      show: false,
     },
     axisTicks: {
-      show: false
+      show: false,
     },
     labels: {
       show: true,
@@ -66,11 +68,11 @@ const chartSettings = {
   plotOptions: {
     bar: {
       borderRadius: 10,
-    }
+    },
   },
   grid: {
     show: false,
-  }
+  },
 };
 
 export default function ApexActivityChart() {
@@ -81,5 +83,5 @@ export default function ApexActivityChart() {
       type="area"
       height={275}
     />
-  )
+  );
 }

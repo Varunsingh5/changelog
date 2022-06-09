@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  Col,
-  Row,
-} from "reactstrap";
+import { Col, Row } from "reactstrap";
 import Widget from "../../components/Widget/Widget";
 
 const Text = () => {
@@ -11,11 +8,11 @@ const Text = () => {
     <div>
       <Row>
         <Col className="mb-4" xs={12}>
-         <p> test........</p>
+          <p> test........</p>
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
 export default Text;
