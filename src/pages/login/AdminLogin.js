@@ -10,22 +10,22 @@ import Footer from "../../components/Footer/Footer";
 import loginImage from "../../assets/loginImage.svg";
 import SofiaLogo from "../../components/Icons/SofiaLogo.js";
 import "react-phone-number-input/style.css";
-import { logInWithEmailAndPassword } from "../../firebase";
+// import { logInWithEmailAndPassword } from "../../firebase";
 import {
-  getAuth,
+  // getAuth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
+  // createUserWithEmailAndPassword,
+  // sendPasswordResetEmail,
+  // signOut,
 } from "firebase/auth";
 
 import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
+  // getFirestore,
+  // query,
+  // getDocs,
+  // collection,
+  // where,
+  // addDoc,
   doc,
   getDoc,
 } from "firebase/firestore";
@@ -68,25 +68,26 @@ const AdminLogin = () => {
     password: "",
   });
 
-  const validation = (key, value) => {
-    let isvalid = false;
-    let result;
-    switch (key) {
-      case "email":
-        result =
-          /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        isvalid = value ? result.test(value) : true;
-        break;
-      case "password":
-        result = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/;
-        isvalid = value ? result.test(value) : true;
-        break;
-      default:
-        break;
-    }
-    console.log("asdgjvaghscdvhas", isvalid);
-    return isvalid;
-  };
+
+  // const validation = (key, value) => {
+  //   let isvalid = false;
+  //   let result;
+  //   switch (key) {
+  //     case 'email':
+  //       result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //       isvalid = value ? result.test(value) : true;
+  //       break;
+  //     case 'password':
+  //       result = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/;
+  //       isvalid = value ? result.test(value) : true;
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  //   console.log("asdgjvaghscdvhas", isvalid);
+  //   return isvalid;
+  // }
+
 
   const Login = () => {
     if (!email)
@@ -113,18 +114,19 @@ const AdminLogin = () => {
           <Row className="d-flex align-items-center">
             <Col xs={12} lg={6} className="left-column">
               <Widget className="widget-auth widget-p-lg">
+
                 <i
                   class="fa-solid fa-arrow-left-long"
                   onClick={() => {
                     history.push("/user/login");
                   }}
                 ></i>
-                <div className="img1">
-                  <img
-                    style={{ width: "40%", marginLeft: "100px" }}
-                    src="https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1145930514433441792"
-                  />
-                </div>
+               
+
+              <div className='img1' >
+          <img style={{  width: "40%", marginLeft: "100px", }} src="https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1145930514433441792" />
+        </div>
+
                 <div className="d-flex align-items-center justify-content-between py-3">
                   <p className="auth-header mb-0">Login</p>
                   <div className="logo-block">

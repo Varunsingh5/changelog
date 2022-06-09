@@ -135,11 +135,11 @@ const Header = (props) => {
                     </div>
                   </div>
                   <img src={notificationImage} alt="Notification Icon" className={s.notificationImage} />
-                  {/* <p className="body-2 muted">It is just a simple image that can define th..</p> */}
+                  <p className="body-2 muted">It is just a simple image that can define th..</p>
                 </div>
               </DropdownItem>
-              {/* <DropdownItem><img src={calendarIcon} alt="Calendar Icon" /><span>1 event has been canceled and ...</span></DropdownItem>
-              <DropdownItem><img src={envelopeIcon} alt="Envelope Icon" /><span>you have 2 new messages</span></DropdownItem> */}
+              <DropdownItem><img src={calendarIcon} alt="Calendar Icon" /><span>1 event has been canceled and ...</span></DropdownItem>
+              <DropdownItem><img src={envelopeIcon} alt="Envelope Icon" /><span>you have 2 new messages</span></DropdownItem>
             </DropdownMenu>
           </Dropdown>
           <Dropdown isOpen={notificationsOpen} toggle={() => toggleNotifications()} nav id="basic-nav-dropdown" className="ml-3">
@@ -207,22 +207,22 @@ const Header = (props) => {
               </div>
             </DropdownToggle>
             <DropdownMenu right className="navbar-dropdown notifications-dropdown" style={{ width: "340px" }}>
-              {/* <DropdownItem><img src={basketIcon} alt="Basket Icon" /><span>12 new orders have arrived today</span></DropdownItem> */}
+              <DropdownItem><img src={basketIcon} alt="Basket Icon" /><span>12 new orders have arrived today</span></DropdownItem>
               <DropdownItem>
                 <div>
                   <div className="d-flex flex-row mb-1">
                     {/* <img src={mariaImage} alt="Maria" className={s.mariaImage} /> */}
-                    {/* <div className="d-flex flex-column"> */}
-                      {/* <p className="body-3">Maria</p>
-                      <p className="label muted">15 min ago</p> */}
-                    {/* </div> */}
+                    <div className="d-flex flex-column">
+                      <p className="body-3">Maria</p>
+                      <p className="label muted">15 min ago</p>
+                    </div>
                   </div>
-                  {/* <img src={notificationImage} alt="Notification Icon" className={s.notificationImage} /> */}
-                  {/* <p className="body-2 muted">It is just a simple image that can define th..</p> */}
+                  <img src={notificationImage} alt="Notification Icon" className={s.notificationImage} />
+                  <p className="body-2 muted">It is just a simple image that can define th..</p>
                 </div>
               </DropdownItem>
-              {/* <DropdownItem><img src={calendarIcon} alt="Calendar Icon" /><span>1 event has been canceled and ...</span></DropdownItem>
-              <DropdownItem><img src={envelopeIcon} alt="Envelope Icon" /><span>you have 2 new messages</span></DropdownItem> */}
+              <DropdownItem><img src={calendarIcon} alt="Calendar Icon" /><span>1 event has been canceled and ...</span></DropdownItem>
+              <DropdownItem><img src={envelopeIcon} alt="Envelope Icon" /><span>you have 2 new messages</span></DropdownItem>
             </DropdownMenu>
           </Dropdown>
           <Dropdown isOpen={notificationsOpen} toggle={() => toggleNotifications()} nav id="basic-nav-dropdown" className="ml-3">

@@ -6,94 +6,131 @@ import yellow from "@material-ui/core/colors/yellow";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import ApexActivityChart from "./components/ActivityChart";
-import Timeline from "@mui/lab/Timeline";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
-import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 
-import Grid from "@mui/material/Grid";
+// 
+// import Timeline from '@mui/lab/Timeline';
+// import TimelineItem from '@mui/lab/TimelineItem';
+// import TimelineSeparator from '@mui/lab/TimelineSeparator';
+// import TimelineConnector from '@mui/lab/TimelineConnector';
+// import TimelineContent from '@mui/lab/TimelineContent';
+// import TimelineDot from '@mui/lab/TimelineDot';
+// import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
-export default function Dashboard() {
-  return (
-    <div>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2} columns={16}>
-          <Grid item xs={8}>
-            <Paper elevation={6} style={{ backgroundColor: "seagreen" }}>
-              <Box p={1}>
-                <Typography variant="h5" style={{ textAlign: "center" }}>
-                  Completed Projects
-                  <br />
-                  <h5 style={{ textAlign: "center" }}>10</h5>
-                </Typography>
-              </Box>
-            </Paper>
-          </Grid>
-          <Grid item xs={8}>
-            <Paper elevation={6} style={{ backgroundColor: "lightpink" }}>
-              <Box p={1}>
-                <Typography variant="h5" style={{ textAlign: "center" }}>
-                  Pending Projects
-                  <br />
-                  <h5 style={{ textAlign: "center" }}>2</h5>
-                </Typography>
-              </Box>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Box>
 
-      <Box sx={{ flexGrow: 1 }} style={{ marginTop: "20px" }}>
-        <Grid container spacing={2} columns={16}>
-          <Grid item xs={8}>
-            <Paper elevation={6} style={{ backgroundColor: "lightblue" }}>
-              <Box p={1}>
-                <Typography variant="h5" style={{ textAlign: "center" }}>
-                  Working On
-                  <br />
-                  <h5 style={{ textAlign: "center" }}>3</h5>
-                </Typography>
-              </Box>
-            </Paper>
-          </Grid>
-          <Grid item xs={8}>
-            <Paper elevation={6} style={{ backgroundColor: "orange" }}>
-              <Box p={1}>
-                <Typography variant="h5" style={{ textAlign: "center" }}>
-                  Happy Clients
-                  <br />
-                  <h5 style={{ textAlign: "center" }}>7</h5>
-                </Typography>
-              </Box>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Box>
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     "& > *": {
+//       margin: theme.spacing(1),
+//       width: theme.spacing(32),
+//       height: theme.spacing(16)
+//     }
+//   },
+//   yellowPaper: {
+//     backgroundColor: yellow[300]
+//   },
+//   customBorder: {
+//     border: `3px solid ${yellow[200]}`
+//   },
+//   customBorderRadius: {
+//     borderRadius: 25
+//   }
+// }));
 
-      {/*      
-      < div style={{ display: "flex" }}>
+// export default function Dashboard() {
+//   const classes = useStyles();
+
+//   return (
+//     <div className={classes.root }>
+//       <div style={{display:"flex"}}>
+//       <Paper elevation={6} style={{marginLeft:"30%", padding:"15px", backgroundColor:"seagreen"}} >
+//        <Box p={1}>
+//           <Typography variant="h5">Completed Projects
+//           <br />
+//           <h5 style={{textAlign:"center"}}>10</h5>
+//           </Typography>
+//         </Box>
+//       </Paper>
+//       <Paper elevation={6} style={{marginLeft:"30%", padding:"15px", backgroundColor:"lightpink"}} >
+//         <Box p={1} >
+//           <Typography variant="h5">Pending Projects
+//           <br />
+//           <h5 style={{textAlign:"center"}}>2</h5  >
+//           </Typography>
+//         </Box>
+//       </Paper>
+//       <Paper elevation={6} style={{marginLeft:"30%", padding:"15px",backgroundColor:"lightblue"}}>
+//         <Box p={1}>
+//           <Typography variant="h5">Working On
+//           <br />
+//           <h5 style={{textAlign:"center"}}>3</h5  >
+//           </Typography>
+//         </Box>
+//       </Paper>
+//       <Paper elevation={6} style={{marginLeft:"30%", padding:"15px",backgroundColor:"orange"}}>
+//         <Box p={1}>
+//           <Typography variant="h5">Happy Clients
+//           <br />
+//           <h5 style={{textAlign:"center"}}>7</h5  >
+//           </Typography>
+//         </Box>
+//       </Paper>
+//       </div>
+//       <br /> <br/>
 
       
-        <Paper elevation={6} style={{ marginLeft: "30%", padding: "15px", backgroundColor: "lightblue" }}>
-          <Box p={1}>
-            <Typography variant="h5">Working On
-              <br />
-              <h5 style={{ textAlign: "center" }}>3</h5  >
-            </Typography>
-          </Box>
-        </Paper>
-        <Paper elevation={6} style={{ marginLeft: "30%", padding: "15px", backgroundColor: "orange" }}>
-          <Box p={1}>
-            <Typography variant="h5">Happy Clients
-              <br />
-              <h5 style={{ textAlign: "center" }}>7</h5  >
-            </Typography>
-          </Box>
-        </Paper>
+      <div>
+        <ApexActivityChart />
       </div>
+      
+       
+      <div style={{marginLeft:"50%", marginTop:"-13%"}}>
+      <h5> Meetings</h5>
+      <React.Fragment>
+      <Timeline position="alternate">
+        <TimelineItem>
+          <TimelineOppositeContent color="text.secondary">
+            09:30 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Client 1</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent color="text.secondary">
+            10:00 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Client2</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent color="text.secondary">
+            12:00 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Client3</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent color="text.secondary">
+            9:00 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Client4</TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    </React.Fragment>
+      </div>
+
       <br /> <br /> */}
 
       <Box sx={{ flexGrow: 1 }} style={{ marginTop: "10%" }}>
@@ -161,5 +198,6 @@ export default function Dashboard() {
         </Grid>
       </Box>
     </div>
+
   );
 }

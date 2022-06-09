@@ -19,14 +19,16 @@ import {
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDe7tQwIh9Y8SqEbLLdwmk8sBJDGGrsOhs",
-  authDomain: "user-964be.firebaseapp.com",
-  databaseURL: "https://user-964be-default-rtdb.firebaseio.com",
-  projectId: "user-964be",
-  storageBucket: "user-964be.appspot.com",
-  messagingSenderId: "484398959119",
-  appId: "1:484398959119:web:43eaf21d047548f2a4b17a",
-  measurementId: "G-YK7ZE4BDRG",
+
+
+  apiKey: "AIzaSyC-or-r3uUfcCQATYemKyzO0_kxc8kkZV0",
+  authDomain: "erp-management-a8e0c.firebaseapp.com",
+  projectId: "erp-management-a8e0c",
+  storageBucket: "erp-management-a8e0c.appspot.com",
+  messagingSenderId: "290875796750",
+  appId: "1:290875796750:web:74c22110f71d2cf81efb5f",
+  measurementId: "G-QGQQ6R6FX4"
+
 };
 
 const app = initializeApp(firebaseConfig);
@@ -117,11 +119,11 @@ const sendPasswordReset = async (email, navigate) => {
 const logout = async (history) => {
   const currentRole = await localStorage.getItem("role");
   localStorage.clear();
-  await signOut(auth)
-    .then((e) => {
-      // history.push(`/user`);
-    })
-    .catch((err) => console.log("signout error", err));
+
+  await signOut(auth).then(e => {
+    // history.push(`/user`);
+  }).catch(err => console.log("signout error", err))
+
 };
 export {
   auth,
