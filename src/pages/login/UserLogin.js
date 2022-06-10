@@ -74,20 +74,7 @@ const Login = (props) => {
   // console.log("jkhbhjbhj");
   //   history.push("/admin/login")
   // }
-  useEffect(() => {
-    console.log("bjkfhkfdhbjk", params);
-    if (params) {
-      //check if doc exists with this number number update is verfied to true
-      const q = query(collection(db, "userList"), where("phone", "==", phone));
-      const querySnapshot = getDocs(q);
-      if (querySnapshot.docs > 0) {
-        console.log("here");
-      }
-      else {
-        console.log("error");
-      }
-    }
-  }, [params, phone])
+
 
   const getOtp = async (e) => {
     e.preventDefault();
@@ -100,14 +87,21 @@ const Login = (props) => {
     }
     else {
       try {
+       
         //get doc and check if is verfied true
-        console.log("here1");
-        console.log(phone);
-        const Ref = collection(db, "userList");
-        const q = query(Ref, where("phone", "==", phone));
+        // console.log("here1");
+        // console.log(phone);
+        const q = query(collection(db, "userList"), where("phone", "==", phone?phone:number));
+
         const querySnapshot = await getDocs(q);
-        console.log(querySnapshot.docs);
-        if (querySnapshot.exists) {
+        const dd = [];
+    
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          dd.push(doc.data());
+        });
+        if (dd.length>0) {
           const response = await setUpRecaptha(number);
           setResult(response);
           setFlag(true);
@@ -139,102 +133,15 @@ const Login = (props) => {
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             localStorage.setItem('role', docSnap.data().role);
+            //update doc isverified to true
+            await updateDoc(docRef, {
+              isVerified: true
+            });
             // if (docSnap.data().role == "user") {
             history.push("/user");
           }
           else {
-            await setDoc(docRef, {
-              uid: confirmationResult?.user?.uid,
-              name: "",
-              authProvider: confirmationResult?.providerId,
-              email: "",
-              onlineState: "",
-              role: "user",
-              isVerified: false,
-              created_at: moment.now(),
-              about: {
-                description: [
-                  {
-                    about: " ",
-                  }
-                ],
-                skill: [
-                  {
-                    programming: " ",
-                    web_Scripting: " ",
-                    database: " ",
-                    tools: " ",
-                  }
-                ],
-                office_Contact: [
-                  {
-                    phone_Number: " ",
-                    email: " ",
-                    skype: " ",
-                    linked_In: " ",
-                  }
-                ],
-                home_Contacts: [
-                  {
-                    email: " ",
-                    phone: " ",
-                  }
-                ],
-                current_Address: [
-                  {
-                    house_Number: " ",
-                    village: " ",
-                    landmarks: " ",
-                    city: " ",
-                    state: " ",
-                    pinCode: " ",
-                    country: " ",
-                  }
-                ],
-                permanent_Address: [
-                  {
-                    house_Number: " ",
-                    village: " ",
-                    landmarks: " ",
-                    city: " ",
-                    state: " ",
-                    pinCode: " ",
-                    country: " ",
-                  }
-                ],
-                identification_Details: [
-                  {
-                    adhaar_Card: " ",
-                    pan_Card: " ",
-                    voter_Card: " ",
-                    passport_Number: " ",
-                    driving_License: " ",
-                    vehicle_Regd_No: " ",
-                  }
-                ],
-                personal_Details: [
-                  {
-                    father_Name: " ",
-                    mother_Name: " ",
-                    marital_Status: " ",
-                    date_of_birth: " ",
-                    hobbies: " ",
-                    blood_Group: " ",
-                    nationality: " ",
-                  }
-                ],
-                educational_Details: [{
-                  qualification: " ",
-                  stream: " ",
-                  session: " ",
-                  year_of_Passing: " ",
-                }],
-              },
-            })
-              .then((e) => {
-                history.push("/user");
-              })
-              .catch(error => console.log("error on doc craete phone signup", error))
+          return;
           }
         })
         .catch(async (err) => {
@@ -277,7 +184,8 @@ const Login = (props) => {
                 <FormGroup className="mb-3" controlId="formBasicEmail">
                   <PhoneInput
                     defaultCountry="IN"
-                    value={number}
+                    value={phone?phone:number}
+                    disabled={phone?true:false}
                     onChange={setNumber}
                     placeholder="Enter Phone Number"
                   />
